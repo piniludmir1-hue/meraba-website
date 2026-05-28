@@ -1,0 +1,91 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #ffffff;
+  color: #111827;
+  font-family: system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+:root {
+  --meraba-blue: #0f4c81; /* MERABA blue (placeholder if exact color unavailable) */
+  --industrial-ink: #05070d;
+}
+
+
+@layer utilities {
+  .container-max {
+    @apply mx-auto max-w-7xl px-6 md:px-8 lg:px-12;
+  }
+
+  .text-hero {
+    @apply text-5xl font-semibold leading-[1.02] md:text-6xl lg:text-7xl;
+  }
+
+  .text-display {
+    @apply text-4xl font-semibold leading-[1.08] md:text-5xl;
+  }
+
+  .text-heading {
+    @apply text-3xl font-semibold leading-tight md:text-4xl;
+  }
+
+  .text-subheading {
+    @apply text-xl font-light leading-8 md:text-2xl;
+  }
+
+  .transition-smooth {
+    @apply transition-all duration-300 ease-out;
+  }
+
+  .btn-primary {
+    @apply inline-flex min-h-14 items-center justify-center bg-meraba px-8 py-4 text-center text-xs font-bold uppercase tracking-[0.18em] text-white transition-smooth hover:bg-white hover:text-gray-950 md:px-10;
+  }
+
+  .btn-secondary-dark {
+    @apply inline-flex min-h-14 items-center justify-center border border-white/25 px-8 py-4 text-center text-xs font-bold uppercase tracking-[0.18em] text-white transition-smooth hover:border-white hover:bg-white hover:text-gray-950 md:px-10;
+  }
+
+  .bg-meraba {
+    background-color: var(--meraba-blue);
+  }
+
+  .text-meraba {
+    color: var(--meraba-blue);
+  }
+
+  .border-meraba {
+    border-color: var(--meraba-blue);
+  }
+
+  /* Strong layout blocks and cards for an industrial, premium feel */
+  .section-block {
+    @apply py-24 md:py-32;
+  }
+
+  .card {
+    @apply rounded-sm border border-gray-100 bg-white p-8 shadow-[0_8px_24px_rgba(15,76,129,0.06)];
+  }
+
+  .card-accent {
+    @apply border-l-4 border-meraba pl-6;
+  }
+
+  .text-strong {
+    @apply text-gray-900 font-semibold;
+  }
+}
