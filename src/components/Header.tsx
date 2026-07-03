@@ -1,39 +1,79 @@
 'use client'
 
 import Link from 'next/link'
-import { useState } from 'react'
+import Image from 'next/image'
+import { useEffect, useState } from 'react'
+import { content } from '@/lib/content'
 
 export default function Header() {
+  const navigation = content.header
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [isScrolled, setIsScrolled] = useState(false)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 36)
+    }
+
+    handleScroll()
+    window.addEventListener('scroll', handleScroll)
+
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
+  const glassState = isScrolled && !isMenuOpen
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-gray-200 bg-white/95 backdrop-blur">
-      <nav className="container-max py-5">
-        <div className="flex justify-between items-center">
+    <header
+      className={`sticky top-0 z-50 w-full transition-smooth ${
+        glassState
+          ? 'border-b border-[#d5dce5] bg-white/92 shadow-[0_14px_45px_rgba(7,17,31,0.08)] backdrop-blur-md'
+          : 'border-b border-[#d5dce5] bg-white'
+      }`}
+    >
+      <nav className="container-max py-3.5">
+        <div className="flex items-center justify-between">
           {/* Logo */}
-          <Link href="/" className="group flex items-center gap-3 transition-smooth hover:opacity-75">
-            <span className="flex h-9 w-9 items-center justify-center bg-meraba text-sm font-bold text-white">M</span>
-            <span className="text-xl font-semibold text-gray-950">MERABA</span>
+          <Link href="/" className="group flex items-center transition-smooth hover:opacity-85" aria-label={navigation.logoAriaLabel}>
+            <Image
+              src="/brand/meraba-logo.png"
+              alt="MERABA"
+              width={2172}
+              height={724}
+              priority
+              unoptimized
+              className="header-brand-logo h-auto object-contain transition-smooth"
+            />
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-9">
-            <Link href="/about" className="text-xs font-bold uppercase tracking-[0.18em] text-gray-600 transition-smooth hover:text-meraba">
-              ABOUT
-            </Link>
-            <Link href="/products" className="text-xs font-bold uppercase tracking-[0.18em] text-gray-600 transition-smooth hover:text-meraba">
-              PRODUCTS
-            </Link>
-            <Link href="/contact" className="bg-gray-950 px-5 py-3 text-xs font-bold uppercase tracking-[0.18em] text-white transition-smooth hover:bg-meraba">
-              CONTACT
-            </Link>
+          <div className="hidden items-center gap-8 md:flex">
+            {navigation.items.map((item, index) => {
+              const isPrimary = index === navigation.items.length - 1
+
+              return (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className={
+                    isPrimary
+                      ? 'border border-[#07111f] bg-[#07111f] px-5 py-3 text-xs font-bold uppercase text-white transition-smooth hover:border-meraba hover:bg-meraba'
+                      : 'text-xs font-bold uppercase text-gray-600 transition-smooth hover:text-meraba'
+                  }
+                >
+                  {item.label}
+                </Link>
+              )
+            })}
           </div>
 
           {/* Mobile Menu Button */}
           <button
-            className="flex h-11 w-11 flex-col justify-center gap-1.5 border border-gray-200 p-3 md:hidden"
+            className={`flex h-11 w-11 flex-col justify-center gap-1.5 border p-3 transition-smooth md:hidden ${
+              glassState ? 'border-gray-200 bg-white/80' : 'border-gray-200 bg-white'
+            }`}
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            aria-label="Toggle menu"
+            aria-label={navigation.mobileMenuAriaLabel}
           >
             <span className={`h-px w-full bg-black transition-all ${isMenuOpen ? 'rotate-45 translate-y-2' : ''}`} />
             <span className={`h-px w-full bg-black transition-all ${isMenuOpen ? 'opacity-0' : ''}`} />
@@ -43,28 +83,17 @@ export default function Header() {
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <div className="mt-5 space-y-1 border-t border-gray-100 pt-5 md:hidden">
-            <Link
-              href="/about"
-              className="block px-2 py-4 text-sm font-bold uppercase tracking-[0.18em] text-gray-700 transition-smooth hover:text-meraba"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              ABOUT
-            </Link>
-            <Link
-              href="/products"
-              className="block px-2 py-4 text-sm font-bold uppercase tracking-[0.18em] text-gray-700 transition-smooth hover:text-meraba"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              PRODUCTS
-            </Link>
-            <Link
-              href="/contact"
-              className="block px-2 py-4 text-sm font-bold uppercase tracking-[0.18em] text-gray-700 transition-smooth hover:text-meraba"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              CONTACT
-            </Link>
+          <div className="mt-5 space-y-1 border-t border-[#d5dce5] pt-5 md:hidden">
+            {navigation.items.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className="block px-2 py-4 text-sm font-bold uppercase text-gray-700 transition-smooth hover:text-meraba"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                {item.label}
+              </Link>
+            ))}
           </div>
         )}
       </nav>

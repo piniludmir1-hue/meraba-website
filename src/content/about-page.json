@@ -1,0 +1,148 @@
+{
+  "serves": {
+    "label": "Who MERABA Serves",
+    "title": "Professional food-service operations."
+  },
+  "flow": {
+    "importNote": "When needed, we also support import, documentation, and logistics.",
+    "trustSignals": [
+      "Product-first sourcing",
+      "Supplier coordination",
+      "Supply support when needed"
+    ],
+    "items": [
+      "Need",
+      "Source",
+      "Adapt",
+      "Coordinate",
+      "Supply"
+    ]
+  },
+  "statement": {
+    "statementOneTitle": "Product need, understood",
+    "ctaHeadline": "Tell us what you need.",
+    "statementOneText": "We review the product use, current requirement, or replacement need — then match it with practical food-service product options.",
+    "statementThreeTitle": "Supply support when needed",
+    "statementTwoText": "Products can be reviewed by size, material, format, branding, quantity, or operational use.",
+    "valuesStatement": "We believe good supply work is built on quality, integrity, reliability, and clear communication.",
+    "ctaButtonText": "Contact MERABA",
+    "headline": "A simpler path to the right product.",
+    "label": "ABOUT MERABA",
+    "closingStatement": "The goal is simple: fewer moving parts for the customer, and a clearer path from product need to supply.",
+    "supportingParagraph": "MERABA helps companies source, match, adapt, and supply selected food-service and operational products with less complexity.\n\nFounded in 2022, we have grown into an active supplier serving international customers through global supply partners, qualified manufacturers, and compliant production sources.\n\nOur team presence spans the United States, Israel, and the United Kingdom.",
+    "statementTwoTitle": "Adapted to real requirements",
+    "ctaButtonLink": "/contact",
+    "statementThreeText": "When needed, MERABA also supports documentation, import, logistics, and supply planning."
+  },
+  "support": {
+    "label": "How MERABA Supports Customers",
+    "title": "Support is added around the product when needed.",
+    "image": {
+      "src": "",
+      "alt": "Product handling or warehouse image",
+      "label": "Upload product handling / warehouse image"
+    },
+    "items": [
+      "Specification review",
+      "Factory coordination",
+      "Documentation support",
+      "Destination planning",
+      "Recurring availability"
+    ]
+  },
+  "cta": {
+    "label": "Contact",
+    "title": "Tell us what you need.",
+    "text": "We’ll review the product, quantity, destination, and supply path.",
+    "buttonText": "Contact MERABA",
+    "buttonLink": "/contact"
+  },
+  "whatSupplies": {
+    "label": "Supplier Role",
+    "title": "Products first, with practical support around the requirement.",
+    "items": [
+      {
+        "title": "Supplier-first focus",
+        "description": "Customers can start with a single product requirement, a custom item, or a recurring supply need."
+      },
+      {
+        "title": "International product access",
+        "description": "MERABA works around product fit, quantity, destination, and timeline before defining the right supply path."
+      },
+      {
+        "title": "Support when required",
+        "description": "Documentation, coordination, storage, and continuity can be added around the product when the order needs it."
+      }
+    ]
+  },
+  "howWorks": {
+    "label": "How MERABA Works",
+    "title": "A practical review before supply begins.",
+    "intro": "A clear product request helps MERABA evaluate the right supply path and communicate what is realistic.",
+    "items": [
+      {
+        "title": "Requirement first",
+        "description": "MERABA reviews the item, quantity, destination, timeline, and practical use case."
+      },
+      {
+        "title": "Product path",
+        "description": "The requirement is matched to standard supply, custom production, or requested product evaluation."
+      },
+      {
+        "title": "Clear coordination",
+        "description": "Communication stays focused on the product, documents, delivery needs, and recurring availability."
+      }
+    ]
+  },
+  "companyStatement": {
+    "label": "Who MERABA Is",
+    "title": "Supplier first. Additional support when required.",
+    "text": "MERABA helps customers obtain food-service and operational products from international factories, with local supply options and practical coordination when the order requires it.",
+    "secondaryText": "Customers can request listed categories or additional relevant products based on the required item, quantity, destination, and timeline.",
+    "image": {
+      "src": "",
+      "alt": "Company operations image",
+      "label": "Upload company / operations image"
+    }
+  },
+  "story": {
+    "label": "POSITIONING",
+    "title": "From product need to practical supply.",
+    "text": "We connect the product, supplier, requirements, and supply path into one clear process."
+  },
+  "capabilities": {
+    "items": [
+      {
+        "title": "Supplier-first approach",
+        "description": "Products come first, with supply support added when needed."
+      },
+      {
+        "title": "International sourcing",
+        "description": "Access to manufacturers and product options across relevant food-service categories."
+      },
+      {
+        "title": "Import and documentation",
+        "description": "Practical support for the steps required to move products across borders."
+      },
+      {
+        "title": "Operational supply",
+        "description": "Quantity, timing, storage, and delivery considered before supply begins."
+      }
+    ]
+  },
+  "positioning": {
+    "title": "Global products. Practical supply.",
+    "text": "Food-service products are often sourced globally for better quality, pricing, availability, or technical fit. MERABA connects the right product with a practical supply path."
+  },
+  "hero": {
+    "label": "ABOUT MERABA",
+    "headline": "A focused supplier for food-service products.",
+    "description": "MERABA helps companies source, adapt, and supply selected products with less complexity.",
+    "image": {
+      "src": "/images/meraba-product-supply-showcase.png",
+      "alt": "MERABA operational product supply",
+      "label": "Upload about page hero image"
+    }
+  },
+  "guide": "Edit About page content here, in the same order it appears on the public About page."
+}

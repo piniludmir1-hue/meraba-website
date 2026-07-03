@@ -1,0 +1,52 @@
+{
+  "guide": "Edit the Products page text here. Products Page category names, descriptions, images, and ordering are edited in Products Page Categories. Homepage Product Areas are edited separately.",
+  "hero": {
+    "label": "Products",
+    "headline": "Carefully selected food-service products.",
+    "description": "High-quality trays, packaging, portion items, and tableware.",
+    "image": {
+      "src": "/uploads/chatgpt-image-jun-15-2026-02_43_58-pm.png",
+      "alt": "MERABA product supply showcase",
+      "label": "Upload products page hero image"
+    }
+  },
+  "intro": {
+    "label": "Product Types",
+    "title": "Product types, clearly organized.",
+    "text": "Common food-service product areas supplied for airlines, catering, packaging, and institutional meal operations."
+  },
+  "productGrid": {
+    "customEyebrow": "Need a product not listed?",
+    "customDescription": "Send the product, quantity, destination, and timeline. MERABA will review the right supply path.",
+    "imagePlaceholderLabel": "Product Image"
+  },
+  "unusedFutureFields": {
+    "productCardCtaText": "Request product",
+    "productCardCtaLink": "/contact",
+    "customCardCtaText": "Contact Product Consultant"
+  },
+  "consultantCta": {
+    "label": "PRODUCT CONSULTANT",
+    "title": "Have a product question?",
+    "text": "Ask about products, options, quantities, or supply needs.",
+    "whatsappButtonText": "Message on WhatsApp",
+    "emailButtonText": "Email",
+    "whatsappDetailLabel": "WhatsApp",
+    "emailDetailLabel": "Email",
+    "websiteDetailLabel": "WEB"
+  },
+  "quoteCta": {
+    "label": "QUOTE REQUEST",
+    "title": "Start with the product.",
+    "text": "Send the item, quantity, destination, and timeline, we’ll review the right supply path.",
+    "buttonText": "Send a request",
+    "buttonLink": "/contact",
+    "unusedFutureFields": {
+      "details": [
+        "Item and specification",
+        "Quantity and destination",
+        "Timeline and recurring needs"
+      ]
+    }
+  }
+}

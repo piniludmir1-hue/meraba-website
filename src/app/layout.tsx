@@ -2,11 +2,16 @@ import type { Metadata } from 'next'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'MERABA - International Sourcing & Supply',
-  description: 'Premium B2B solutions for airline serving ware, catering products, CPET trays, and food packaging',
+  title: 'MERABA - Food-Service Product Supplier',
+  description: 'Food-service and operational products for airlines, catering operations, food manufacturers, and institutional food service.',
+  icons: {
+    icon: '/brand/meraba-icon.png',
+    shortcut: '/brand/meraba-icon.png',
+    apple: '/brand/meraba-icon.png',
+  },
   openGraph: {
-    title: 'MERABA - International Sourcing & Supply',
-    description: 'Premium B2B solutions for airline serving ware, catering products, CPET trays, and food packaging',
+    title: 'MERABA - Food-Service Product Supplier',
+    description: 'Food-service and operational products for airlines, catering operations, food manufacturers, and institutional food service.',
     type: 'website',
   },
 }

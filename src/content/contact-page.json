@@ -1,0 +1,92 @@
+{
+  "guide": "Edit Contact page content here, in the same order it appears on the public Contact page.",
+  "hero": {
+    "label": "Contact",
+    "headline": "Request a product quote.",
+    "description": "Share the product, quantity, destination, and timeline. MERABA will review the requirement and help evaluate the appropriate supply option.",
+    "image": {
+      "src": "/images/meraba-product-families.png",
+      "alt": "MERABA product inquiry",
+      "label": "Upload contact page hero image"
+    }
+  },
+  "formIntro": {
+    "label": "B2B PRODUCT INQUIRY",
+    "title": "Looking for a reliable product supplier?",
+    "text": "Share the product, quantity, destination, and timeline. We will review the requirement and help evaluate the right supply option.",
+    "reviewTitle": "Product requirement review",
+    "reviewText": "Share the product, estimated quantity, destination, and timeline, and we’ll help review the right supply option.",
+    "submitText": "SEND REQUEST",
+    "image": {
+      "src": "",
+      "alt": "Product inquiry image",
+      "label": "Upload contact / product inquiry image"
+    }
+  },
+  "requestDetails": [
+    "Product or specification",
+    "Estimated quantity",
+    "Destination",
+    "Required timeline"
+  ],
+  "successMessage": {
+    "title": "Thank you. Your request has been received.",
+    "text": "Our team will review your inquiry and get back to you shortly."
+  },
+  "formFields": [
+    {
+      "name": "name",
+      "label": "Name",
+      "type": "text",
+      "required": false
+    },
+    {
+      "name": "company",
+      "label": "Company",
+      "type": "text",
+      "required": true
+    },
+    {
+      "name": "email",
+      "label": "Email",
+      "type": "email",
+      "required": true
+    },
+    {
+      "name": "phone",
+      "label": "Phone",
+      "type": "tel",
+      "required": false
+    },
+    {
+      "name": "product",
+      "label": "Product needed",
+      "type": "text",
+      "required": true,
+      "placeholder": "Example: CPET tray, portion cup, cutlery kit, custom packaging"
+    },
+    {
+      "name": "quantity",
+      "label": "Estimated annual quantity",
+      "type": "text",
+      "required": true,
+      "placeholder": "Example: 100,000 units per year"
+    },
+    {
+      "name": "destination",
+      "label": "Destination",
+      "type": "text",
+      "required": false
+    },
+    {
+      "name": "timeline",
+      "label": "Timeline",
+      "type": "text",
+      "required": false
+    }
+  ],
+  "messageField": {
+    "label": "Message / Specification",
+    "placeholder": "Share specifications, packaging format, recurring supply needs, documentation, or other relevant details."
+  }
+}

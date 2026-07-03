@@ -1,0 +1,410 @@
+{
+  "global": {
+    "mainEmail": "info@meraba.com",
+    "productConsultantPhone": "+972 53 333 3764",
+    "companyName": "MERABA",
+    "phone": "+972 53 333 3764",
+    "tagline": "Global sourcing. Local supply. Operational certainty.",
+    "productConsultantTitle": "Product Consultant",
+    "productConsultantEmail": "pini@meraba.co",
+    "websiteUrl": "https://meraba.co",
+    "productConsultantGmail": "https://mail.google.com/mail/?view=cm&fs=1&to=pini@meraba.co&su=Product%20Requirement%20for%20MERABA&body=Hello%20Pini%2C%0A%0AI%20would%20like%20to%20discuss%20a%20product%20requirement%20for%20MERABA.%0A%0AProduct%3A%0AQuantity%3A%0ADestination%3A%0ATimeline%3A",
+    "productConsultantName": "Pini Ludmir",
+    "whatsappNumber": "972533333764",
+    "productConsultantWhatsapp": "https://wa.me/972533333764?text=Hello%20Pini%2C%20I%20would%20like%20to%20discuss%20a%20product%20requirement%20for%20MERABA."
+  },
+  "images": {
+    "requestedProduct": {
+      "src": "",
+      "alt": "Requested product or custom supply image",
+      "label": "Upload requested product / custom supply image"
+    },
+    "operationalSupply": {
+      "src": "",
+      "alt": "Operational supply image",
+      "label": "Upload operational supply image"
+    },
+    "aboutHero": {
+      "src": "/images/meraba-product-supply-showcase.png",
+      "alt": "MERABA operational product supply",
+      "label": "Upload about page hero image"
+    },
+    "contactInquiry": {
+      "src": "",
+      "alt": "Product inquiry image",
+      "label": "Upload contact / product inquiry image"
+    },
+    "homepageHero": {
+      "src": "/images/meraba-meal-service-hero.png",
+      "alt": "Operational food-service product supply setup",
+      "label": "Upload hero product / operational image"
+    },
+    "companyOperations": {
+      "src": "",
+      "alt": "Company operations image",
+      "label": "Upload company / operations image"
+    },
+    "productHandling": {
+      "src": "",
+      "alt": "Product handling or warehouse image",
+      "label": "Upload product handling / warehouse image"
+    },
+    "contactHero": {
+      "src": "/images/meraba-product-families.png",
+      "alt": "MERABA product inquiry",
+      "label": "Upload contact page hero image"
+    },
+    "productsHero": {
+      "src": "/images/meraba-product-supply-showcase.png",
+      "alt": "MERABA product supply showcase",
+      "label": "Upload products page hero image"
+    }
+  },
+  "homepage": {
+    "hero": {
+      "headline": "Operational Products for Airlines, Catering & Food Systems",
+      "description": "MERABA supplies standard, custom, and requested food-service products from international factories - with local supply options and operational certainty when required.",
+      "supportingLine": "From CPET trays and packaging to onboard service items and custom product needs, MERABA helps evaluate the right supply option for your operation.",
+      "primaryCtaText": "Request Product Quote",
+      "primaryCtaLink": "/contact",
+      "secondaryCtaText": "View Product Categories",
+      "secondaryCtaLink": "/products",
+      "proofCues": [
+        "International factory sourcing",
+        "Local supply options",
+        "Product supplier first",
+        "Large-quantity capability"
+      ]
+    },
+    "productSection": {
+      "label": "Product Categories",
+      "title": "Product categories built for operational procurement.",
+      "subtitle": "Clear product areas for fast procurement decisions, with room for standard, custom, and requested items used in food-service operations."
+    },
+    "consultantTile": {
+      "title": "Contact a Product Consultant",
+      "shortText": "For product requirements, custom items, or supply questions.",
+      "whatsappButtonText": "Message Product Consultant",
+      "emailButtonText": "Email Product Consultant"
+    },
+    "whyMeraba": {
+      "label": "Why MERABA",
+      "title": "Product supply with the discipline large operations expect.",
+      "intro": "A clear product request helps MERABA evaluate the right supply path without turning every inquiry into a large program.",
+      "items": [
+        {
+          "title": "Product supplier first",
+          "description": "Customers can start with one product, a custom item, or a defined recurring requirement."
+        },
+        {
+          "title": "Requirement-based review",
+          "description": "Product, quantity, destination, and timeline guide the most suitable supply path."
+        },
+        {
+          "title": "International factory network",
+          "description": "Factory access for standard, custom, and large-quantity product needs."
+        },
+        {
+          "title": "Operational certainty",
+          "description": "Clear communication when documentation, storage, or recurring availability matters."
+        }
+      ]
+    },
+    "supplyModel": {
+      "label": "Supply Model",
+      "title": "Simple product supply. Support when the order requires it.",
+      "intro": "MERABA supplies products first. Sourcing, documentation, storage, and coordination capabilities can be added when the order needs them.",
+      "reviewLabel": "Requirement Review",
+      "reviewText": "Tell us what your operation needs. MERABA reviews the product, quantity, destination, and timeline before recommending a practical supply option.",
+      "steps": [
+        {
+          "title": "Product Requirement",
+          "description": "Item, quantity, destination, timeline, and any specification notes."
+        },
+        {
+          "title": "Supply Path Review",
+          "description": "MERABA reviews whether the requirement fits standard supply, custom production, or a requested product path."
+        },
+        {
+          "title": "Factory Sourcing / Production",
+          "description": "Factory options or production coordination are handled when required."
+        },
+        {
+          "title": "Quality & Documentation",
+          "description": "Specifications, samples, and documents can be supported when needed."
+        },
+        {
+          "title": "Local Supply to Client",
+          "description": "Approved product supplied according to the agreed delivery plan."
+        }
+      ]
+    },
+    "industries": {
+      "label": "Industries Served",
+      "title": "Built for large food-service operations.",
+      "intro": "MERABA supplies product requirements used across aviation, catering, food production, and institutional meal-service environments.",
+      "items": [
+        "Airlines",
+        "Airline catering companies",
+        "Large food manufacturers",
+        "Institutional food systems",
+        "Kosher food operations",
+        "Hospitality and travel food service"
+      ]
+    },
+    "finalCta": {
+      "label": "Contact",
+      "title": "Looking for a reliable product supplier?",
+      "text": "Tell us what product you need, the required quantity, destination, and timeline. MERABA will help evaluate the best supply option.",
+      "buttonText": "Request a Product Quote",
+      "buttonLink": "/contact"
+    }
+  },
+  "productsPage": {
+    "hero": {
+      "label": "Products",
+      "headline": "Food-service products supplied for operational use.",
+      "description": "Customers can request a standard item, a custom product, an additional relevant product, or recurring supply requirement. The product comes first."
+    },
+    "intro": {
+      "label": "Product Families",
+      "title": "Clear product areas for fast procurement decisions.",
+      "text": "These categories represent common product areas. MERABA can also help with additional operational food-service products based on the required item, quantity, destination, and timeline."
+    },
+    "requestedProduct": {
+      "label": "Need another product?",
+      "title": "Send the product requirement.",
+      "text": "If the product is used in operational food-service, catering, onboard service, packaging, or institutional meal systems, MERABA can help evaluate sourcing, production, and supply options.",
+      "buttonText": "Request a Product",
+      "buttonLink": "/contact"
+    },
+    "quoteCta": {
+      "label": "Quote Request",
+      "title": "Start with the product.",
+      "text": "Share the item, quantity, destination, and timeline. Support can be added around the product when needed.",
+      "buttonText": "Request Product Quote",
+      "buttonLink": "/contact"
+    }
+  },
+  "aboutPage": {
+    "hero": {
+      "label": "About MERABA",
+      "headline": "A supplier of food-service and operational products.",
+      "description": "Established in 2022, MERABA supplies standard, custom, and requested products used by airlines, catering companies, food manufacturers, and institutional food-service systems."
+    },
+    "companyStatement": {
+      "label": "Who MERABA Is",
+      "title": "Supplier first. Additional support when required.",
+      "text": "MERABA helps customers obtain food-service and operational products from international factories, with local supply options and practical coordination when the order requires it.",
+      "secondaryText": "Customers can request listed categories or additional relevant products based on the required item, quantity, destination, and timeline."
+    },
+    "whatSupplies": {
+      "label": "What MERABA Supplies",
+      "title": "Operational product categories and requested product needs."
+    },
+    "howWorks": {
+      "label": "How MERABA Works",
+      "title": "A practical review before supply begins.",
+      "intro": "A clear product request helps MERABA evaluate the right supply path and communicate what is realistic.",
+      "items": [
+        {
+          "title": "Requirement first",
+          "description": "MERABA reviews the item, quantity, destination, timeline, and practical use case."
+        },
+        {
+          "title": "Product path",
+          "description": "The requirement is matched to standard supply, custom production, or requested product evaluation."
+        },
+        {
+          "title": "Clear coordination",
+          "description": "Communication stays focused on the product, documents, delivery needs, and recurring availability."
+        }
+      ]
+    },
+    "serves": {
+      "label": "Who MERABA Serves",
+      "title": "Professional food-service operations."
+    },
+    "support": {
+      "label": "How MERABA Supports Customers",
+      "title": "Support is added around the product when needed.",
+      "items": [
+        "Specification review",
+        "Factory coordination",
+        "Documentation support",
+        "Destination planning",
+        "Recurring availability"
+      ]
+    },
+    "cta": {
+      "label": "Product Requirement",
+      "title": "Looking for a supplier for a specific product?",
+      "text": "Start with the product. MERABA can review the requirement and help evaluate the right supply option for operational food-service use.",
+      "buttonText": "Request Product Quote",
+      "buttonLink": "/contact"
+    }
+  },
+  "contactPage": {
+    "hero": {
+      "label": "Contact",
+      "headline": "Request a product quote.",
+      "description": "Share the product, quantity, destination, and timeline. MERABA will review the requirement and help evaluate the appropriate supply option."
+    },
+    "formIntro": {
+      "label": "B2B Product Inquiry",
+      "title": "Looking for a reliable product supplier?",
+      "text": "Use the form for a listed product, a custom item, an additional relevant operational food-service product, or an ongoing supply requirement.",
+      "reviewTitle": "Product requirement review",
+      "reviewText": "A clear request helps MERABA understand the product path, required quantity, destination, and timing before responding.",
+      "submitText": "Request a Product Quote"
+    },
+    "requestDetails": [
+      "Product or specification",
+      "Estimated quantity",
+      "Destination",
+      "Required timeline"
+    ]
+  },
+  "categories": [
+    {
+      "shortDescription": "Prepared-meal trays for hot, chilled, and airline meal applications.",
+      "placeholderLabel": "Upload CPET tray image",
+      "active": true,
+      "showOnHomepage": true,
+      "name": "CPET Trays",
+      "imageAlt": "CPET trays",
+      "showOnProductsPage": true,
+      "sortOrder": 10,
+      "id": "cpet-trays",
+      "image": ""
+    },
+    {
+      "shortDescription": "Molded fiber trays and food-service containers.",
+      "placeholderLabel": "Upload fiber tray image",
+      "active": true,
+      "showOnHomepage": true,
+      "name": "Fiber Trays",
+      "imageAlt": "Fiber trays",
+      "showOnProductsPage": true,
+      "sortOrder": 20,
+      "id": "fiber-trays",
+      "image": ""
+    },
+    {
+      "shortDescription": "Containers, lids, portion cups, and packaging systems.",
+      "placeholderLabel": "Upload food packaging image",
+      "active": true,
+      "showOnHomepage": true,
+      "name": "PET / Food Packaging",
+      "imageAlt": "Food packaging",
+      "showOnProductsPage": true,
+      "sortOrder": 30,
+      "id": "food-packaging",
+      "image": ""
+    },
+    {
+      "shortDescription": "Individual seasoning sets for onboard and institutional meals.",
+      "placeholderLabel": "Upload salt & pepper product image",
+      "active": true,
+      "showOnHomepage": true,
+      "name": "Salt & Pepper Sets",
+      "imageAlt": "Salt and pepper sets",
+      "showOnProductsPage": true,
+      "sortOrder": 40,
+      "id": "salt-pepper",
+      "image": ""
+    },
+    {
+      "shortDescription": "Single-serve olive oil portions and meal accompaniments.",
+      "placeholderLabel": "Upload olive oil product image",
+      "active": true,
+      "showOnHomepage": true,
+      "name": "Individual Olive Oil",
+      "imageAlt": "Individual olive oil",
+      "showOnProductsPage": true,
+      "sortOrder": 50,
+      "id": "olive-oil",
+      "image": ""
+    },
+    {
+      "shortDescription": "Crackers, olive snacks, and other individually packed snack items for operational food-service use.",
+      "placeholderLabel": "Upload individual snack product image",
+      "active": true,
+      "showOnHomepage": true,
+      "name": "Individual Snacks",
+      "imageAlt": "Individual snacks",
+      "showOnProductsPage": true,
+      "sortOrder": 60,
+      "id": "individual-snacks",
+      "image": ""
+    },
+    {
+      "shortDescription": "Wrapped cutlery and meal-service kits.",
+      "placeholderLabel": "Upload cutlery kit image",
+      "active": true,
+      "showOnHomepage": true,
+      "name": "Cutlery & Service Items",
+      "imageAlt": "Cutlery and service items",
+      "showOnProductsPage": true,
+      "sortOrder": 70,
+      "id": "cutlery-service",
+      "image": ""
+    },
+    {
+      "shortDescription": "Cups, bowls, napkins, serving trays, and operational disposables.",
+      "placeholderLabel": "Upload catering consumables image",
+      "active": true,
+      "showOnHomepage": true,
+      "name": "Catering Consumables",
+      "imageAlt": "Catering consumables",
+      "showOnProductsPage": true,
+      "sortOrder": 80,
+      "id": "catering-consumables",
+      "image": ""
+    },
+    {
+      "shortDescription": "Customer-specific products made to defined requirements.",
+      "placeholderLabel": "Upload custom product image",
+      "active": true,
+      "showOnHomepage": true,
+      "name": "Custom / Requested Products",
+      "imageAlt": "Custom requested products",
+      "showOnProductsPage": true,
+      "sortOrder": 90,
+      "id": "custom-requested-products",
+      "image": ""
+    }
+  ],
+  "products": [
+    {
+      "shortDescription": "Ovenable prepared-meal tray formats for food-service operations.",
+      "longDescription": "",
+      "active": true,
+      "ctaLink": "/contact",
+      "name": "Black CPET Trays",
+      "imageAlt": "Black CPET Trays",
+      "showOnProductsPage": true,
+      "sortOrder": 10,
+      "id": "black-cpet-trays",
+      "image": "",
+      "featuredOnHomepage": false,
+      "ctaText": "Request this product",
+      "category": "cpet-trays"
+    },
+    {
+      "shortDescription": "Crackers, olive snacks, and similar individually packed snack items.",
+      "longDescription": "",
+      "active": true,
+      "ctaLink": "/contact",
+      "name": "Single-Serve Snacks",
+      "imageAlt": "Single serve snacks",
+      "showOnProductsPage": true,
+      "sortOrder": 20,
+      "id": "single-serve-snacks",
+      "image": "",
+      "featuredOnHomepage": false,
+      "ctaText": "Request this product",
+      "category": "individual-snacks"
+    }
+  ]
+}

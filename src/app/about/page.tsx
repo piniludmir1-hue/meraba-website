@@ -1,139 +1,72 @@
 'use client'
 
+import Link from 'next/link'
+import Image from 'next/image'
 import Header from '@/components/Header'
-import HeroSection from '@/components/HeroSection'
 import Footer from '@/components/Footer'
+import { content } from '@/lib/content'
 
 export default function About() {
+  const { statement } = content.aboutPage
+
   return (
     <>
       <Header />
-      
-      {/* Hero Section */}
-      <HeroSection
-        subtitle="About Us"
-        title="Three Decades of Excellence in Global Supply"
-        description="MERABA has been a trusted partner in the international food service and aviation industries since 1994"
-      />
 
-      {/* Company Overview */}
-      <section className="w-full bg-white py-20 md:py-32">
-        <div className="container-max">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20 items-center">
-            <div>
-              <h2 className="text-heading mb-8">Our Story</h2>
-              <div className="space-y-6 text-gray-600 font-light leading-relaxed">
-                <p>
-                  Founded in 1994, MERABA emerged from a simple vision: to connect premium manufacturers with discerning businesses in the aviation and food service sectors. What began as a small trading company has grown into a comprehensive B2B solution provider.
+      <main className="relative overflow-hidden bg-[#f3f1ec] py-10 md:py-12 lg:py-14">
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_82%_8%,rgba(8,63,104,0.08),transparent_34%),linear-gradient(135deg,rgba(255,255,255,0.56),rgba(226,231,236,0.32))]" />
+        <div className="container-max relative">
+          <article className="relative mx-auto max-w-5xl overflow-hidden rounded-[2px] border border-[#d7dce2] bg-[#fbfaf7] px-6 py-8 shadow-[0_28px_90px_rgba(7,17,31,0.11)] md:px-10 md:py-11 lg:px-14 lg:py-14">
+            <div className="pointer-events-none absolute inset-x-0 top-0 h-1 bg-meraba" />
+            <div className="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full bg-[radial-gradient(circle,rgba(8,63,104,0.08),transparent_62%)]" />
+
+            <div className="relative grid grid-cols-1 gap-10 lg:grid-cols-[0.92fr_1.08fr] lg:gap-14">
+              <header className="lg:-mt-2">
+                <Image
+                  src="/brand/meraba-icon.png"
+                  alt=""
+                  width={1254}
+                  height={1254}
+                  aria-hidden="true"
+                  className="mb-3 h-6 w-6 object-contain opacity-30"
+                />
+                <p className="text-[0.7rem] font-bold uppercase tracking-[0.22em] text-meraba">
+                  {statement.label}
                 </p>
-                <p>
-                  Today, we serve hundreds of international clients including major airlines, catering companies, hospitality groups, and specialty food retailers. Our success is built on three core principles: uncompromising quality, transparent relationships, and continuous innovation.
-                </p>
-                <p>
-                  We've invested heavily in supply chain infrastructure, quality control systems, and customer support. Every product that bears the MERABA mark has undergone rigorous testing to ensure it meets or exceeds international standards.
-                </p>
+                <h1 className="mt-4 max-w-xl text-[clamp(2.35rem,4.4vw,5.15rem)] font-medium leading-[0.98] tracking-[-0.055em] text-[#07111f] [font-family:'Segoe_UI_Variable_Display','Aptos_Display','Helvetica_Neue',Arial,sans-serif]">
+                  {statement.headline}
+                </h1>
+              </header>
+
+              <div className="flex flex-col justify-end lg:pt-12">
+                <div className="max-w-2xl space-y-5 text-[clamp(1.02rem,1.18vw,1.15rem)] leading-8 text-[#4d5a66]">
+                  {statement.supportingParagraph.split('\n\n').map((paragraph) => (
+                    <p key={paragraph}>{paragraph}</p>
+                  ))}
+                </div>
               </div>
             </div>
 
-            {/* Stats */}
-            <div className="space-y-8">
-              <div className="border-t border-gray-200 pt-8">
-                <p className="text-5xl font-light mb-2">30+</p>
-                <p className="text-gray-600 font-light">Years of Industry Experience</p>
-              </div>
-              <div className="border-t border-gray-200 pt-8">
-                <p className="text-5xl font-light mb-2">500+</p>
-                <p className="text-gray-600 font-light">International Clients</p>
-              </div>
-              <div className="border-t border-gray-200 pt-8">
-                <p className="text-5xl font-light mb-2">50+</p>
-                <p className="text-gray-600 font-light">Countries Served</p>
-              </div>
-              <div className="border-t border-gray-200 pt-8">
-                <p className="text-5xl font-light mb-2">24/7</p>
-                <p className="text-gray-600 font-light">Customer Support</p>
-              </div>
+            <div className="relative mt-12 grid grid-cols-1 gap-7 border-t border-[#d7dce2] pt-8 lg:grid-cols-[0.72fr_1.28fr] lg:gap-12">
+              <p className="text-[1.05rem] leading-8 text-[#283440]">
+                {statement.valuesStatement}
+              </p>
+              <p className="text-[clamp(1.35rem,2.15vw,2.25rem)] font-medium leading-[1.12] tracking-[-0.035em] text-[#07111f]">
+                {statement.closingStatement}
+              </p>
             </div>
-          </div>
+
+            <div className="relative mt-9 flex flex-col gap-5 border-t border-[#d7dce2] pt-7 sm:flex-row sm:items-center sm:justify-between">
+              <p className="text-[clamp(1.35rem,2vw,2rem)] font-medium leading-tight tracking-[-0.035em] text-[#07111f]">
+                {statement.ctaHeadline}
+              </p>
+              <Link href={statement.ctaButtonLink} className="btn-primary shrink-0">
+                {statement.ctaButtonText}
+              </Link>
+            </div>
+          </article>
         </div>
-      </section>
-
-      {/* Mission & Vision */}
-      <section className="w-full bg-gray-50 py-20 md:py-32">
-        <div className="container-max">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-24">
-            {/* Mission */}
-            <div>
-              <h3 className="text-2xl font-light tracking-tight mb-6">Our Mission</h3>
-              <p className="text-gray-600 font-light leading-relaxed">
-                To be the preferred international sourcing partner for premium food service and aviation products, delivering exceptional value through quality, reliability, and customer-centric solutions.
-              </p>
-            </div>
-
-            {/* Vision */}
-            <div>
-              <h3 className="text-2xl font-light tracking-tight mb-6">Our Vision</h3>
-              <p className="text-gray-600 font-light leading-relaxed">
-                To create a global supply ecosystem where innovation, sustainability, and excellence converge to elevate the standards of the food service and aviation industries.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Team & Values */}
-      <section className="w-full bg-white py-20 md:py-32">
-        <div className="container-max">
-          <div className="max-w-3xl mx-auto text-center mb-16 md:mb-24">
-            <h2 className="text-display mb-6">Our Values</h2>
-            <p className="text-lg text-gray-600 font-light">
-              These principles guide everything we do
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-            <div className="text-center space-y-4">
-              <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto text-2xl">
-                ⚡
-              </div>
-              <h3 className="text-lg font-light tracking-tight">Excellence</h3>
-              <p className="text-sm text-gray-600 font-light">
-                Uncompromising commitment to quality in every product and service
-              </p>
-            </div>
-
-            <div className="text-center space-y-4">
-              <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto text-2xl">
-                🤝
-              </div>
-              <h3 className="text-lg font-light tracking-tight">Integrity</h3>
-              <p className="text-sm text-gray-600 font-light">
-                Transparent, honest relationships built on trust and accountability
-              </p>
-            </div>
-
-            <div className="text-center space-y-4">
-              <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto text-2xl">
-                🚀
-              </div>
-              <h3 className="text-lg font-light tracking-tight">Innovation</h3>
-              <p className="text-sm text-gray-600 font-light">
-                Continuous improvement and exploration of new solutions
-              </p>
-            </div>
-
-            <div className="text-center space-y-4">
-              <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto text-2xl">
-                🌍
-              </div>
-              <h3 className="text-lg font-light tracking-tight">Sustainability</h3>
-              <p className="text-sm text-gray-600 font-light">
-                Responsible business practices for a better future
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
+      </main>
 
       <Footer />
     </>

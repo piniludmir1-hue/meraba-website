@@ -1,0 +1,157 @@
+{
+  "guide": "These are the product areas used only for the Products page category cards. Homepage Product Areas are edited separately in the Homepage Product Areas admin section.",
+  "categories": [
+    {
+      "shortDescription": "Heat and cold resistant trays, tailored to filling systems and customer requirements.",
+      "active": true,
+      "showOnHomepage": true,
+      "name": "CPET Trays",
+      "imageAlt": "CPET trays",
+      "showOnProductsPage": true,
+      "sortOrder": 1,
+      "unusedFutureFields": {
+        "placeholderLabel": "Upload CPET tray image"
+      },
+      "id": "cpet-trays",
+      "image": ""
+    },
+    {
+      "shortDescription": "Heat and cold resistant fiber trays in a wide range of formats, tailored to customer requirements.",
+      "active": true,
+      "showOnHomepage": false,
+      "name": "Fiber Trays",
+      "imageAlt": "Fiber trays",
+      "showOnProductsPage": true,
+      "sortOrder": 2,
+      "unusedFutureFields": {
+        "placeholderLabel": "Upload fiber tray image"
+      },
+      "id": "fiber-trays",
+      "image": ""
+    },
+    {
+      "shortDescription": "Clear, high-quality PET packaging made to fit your product, size, and service requirements.",
+      "active": true,
+      "showOnHomepage": true,
+      "name": "PET / Food Packaging",
+      "imageAlt": "PET / Food Packaging",
+      "showOnProductsPage": true,
+      "sortOrder": 3,
+      "unusedFutureFields": {
+        "placeholderLabel": "Upload food packaging image"
+      },
+      "id": "PET / Food Packaging",
+      "image": ""
+    },
+    {
+      "shortDescription": "Elegant seasoning sets for business-class and premium meal service.",
+      "active": true,
+      "showOnHomepage": true,
+      "name": "Premium Salt & Pepper Sets",
+      "imageAlt": "Premium Salt & Pepper Sets",
+      "showOnProductsPage": true,
+      "sortOrder": 4,
+      "unusedFutureFields": {
+        "placeholderLabel": "Upload salt & pepper product image"
+      },
+      "id": "Premium Salt & Pepper Sets",
+      "image": ""
+    },
+    {
+      "shortDescription": "Custom paper seasoning sets for meal service.",
+      "active": true,
+      "showOnHomepage": true,
+      "name": "Paper Salt & Pepper Sets",
+      "imageAlt": "Paper Salt & Pepper Sets",
+      "showOnProductsPage": true,
+      "sortOrder": 5,
+      "unusedFutureFields": {
+        "placeholderLabel": "Upload olive oil product image"
+      },
+      "id": "Paper Salt & Pepper Sets",
+      "image": ""
+    },
+    {
+      "shortDescription": "Premium olive oil in personal glass or plastic bottles.",
+      "active": true,
+      "showOnHomepage": true,
+      "name": "Individual Olive Oil",
+      "imageAlt": "Individual Olive Oil",
+      "showOnProductsPage": true,
+      "sortOrder": 6,
+      "unusedFutureFields": {
+        "placeholderLabel": "Upload individual snack product image"
+      },
+      "id": "Individual Olive Oil",
+      "image": ""
+    },
+    {
+      "shortDescription": "High-quality aluminum bowls and lids for prepared meal service.",
+      "active": true,
+      "showOnHomepage": true,
+      "name": "Aluminum Meal Bowls & Lids",
+      "imageAlt": "Aluminum Meal Bowls & Lids",
+      "showOnProductsPage": true,
+      "sortOrder": 7,
+      "unusedFutureFields": {
+        "placeholderLabel": "Upload cutlery kit image"
+      },
+      "id": "Aluminum Meal Bowls & Lids",
+      "image": ""
+    },
+    {
+      "shortDescription": "White plates, bowls, cups, and service pieces for premium meal service.",
+      "active": true,
+      "showOnHomepage": true,
+      "name": "Premium Tableware Sets",
+      "imageAlt": "Premium Tableware Sets",
+      "showOnProductsPage": true,
+      "sortOrder": 8,
+      "unusedFutureFields": {
+        "placeholderLabel": "Upload catering consumables image"
+      },
+      "id": "Premium Tableware Sets",
+      "image": ""
+    },
+    {
+      "shortDescription": "Relevant products reviewed by item, quantity, destination, and timeline.",
+      "active": true,
+      "showOnHomepage": true,
+      "cardType": "request-cta",
+      "name": "Custom / Requested Products",
+      "imageAlt": "Custom requested products",
+      "showOnProductsPage": true,
+      "sortOrder": 999,
+      "unusedFutureFields": {
+        "placeholderLabel": "Upload custom product image"
+      },
+      "isSpecialLastCard": true,
+      "id": "custom-requested-products",
+      "image": ""
+    },
+    {
+      "active": true,
+      "sortOrder": 9,
+      "id": "Branded Glass Cups",
+      "name": "Branded Glass Cups",
+      "imageAlt": "Branded Glass Cups",
+      "shortDescription": "Custom branded glass cups for meal service, events, and hospitality."
+    },
+    {
+      "active": true,
+      "sortOrder": 10,
+      "id": "Stainless Steel Cutlery",
+      "name": "Stainless Steel Cutlery",
+      "imageAlt": "Stainless Steel Cutlery",
+      "shortDescription": "High-quality stainless steel cutlery for meal service."
+    },
+    {
+      "active": true,
+      "id": "Individual Crackers",
+      "name": "Individual Crackers",
+      "imageAlt": "Individual Crackers",
+      "sortOrder": 11,
+      "shortDescription": "Personal cracker packs, with regular and gluten-free options."
+    }
+  ]
+}

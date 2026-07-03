@@ -36,7 +36,6 @@ export default function HeroSection({
   subtitle,
   description,
   cta,
-  secondaryCta,
   backgroundImage,
   backgroundImageAlt,
   sideImage1,
@@ -62,8 +61,8 @@ export default function HeroSection({
         <div className="absolute bottom-0 left-0 h-28 w-full bg-[linear-gradient(0deg,rgba(244,247,250,0.11),transparent)]" />
 
         <div className="hero-home-container container-max relative z-10 py-16 md:py-20 lg:py-24">
-          <div className="hero-home-grid grid min-h-[calc(100svh-15rem)] grid-cols-1 items-center gap-14 lg:grid-cols-[0.88fr_1.12fr] lg:gap-12">
-            <div className="hero-copy-composition relative min-w-0">
+          <div className="hero-home-grid grid min-h-[calc(100svh-15rem)] grid-cols-1 items-center gap-14 lg:grid-cols-[1.08fr_0.92fr] lg:gap-12">
+            <div className="hero-copy-composition relative min-w-0 max-w-[40rem]">
               {subtitle && (
                 <div className="hero-brand-signature">
                   <div className="hero-brand-rail" aria-hidden="true" />
@@ -92,26 +91,14 @@ export default function HeroSection({
               <div className="hero-copy-flow" aria-hidden="true" />
 
               <h1 className="hero-copy-headline relative">
-                {title.split('\n').map((line, index) => {
-                  const [beforeFoodService, afterFoodService] = line.split('food-service')
-
-                  return (
-                    <span
-                      key={`${line}-${index}`}
-                      className={`hero-headline-line hero-headline-line-${index + 1}`}
-                    >
-                      {afterFoodService === undefined ? (
-                        line
-                      ) : (
-                        <>
-                          {beforeFoodService}
-                          <span className="whitespace-nowrap">food-service</span>
-                          {afterFoodService}
-                        </>
-                      )}
-                    </span>
-                  )
-                })}
+                {title.split('\n').map((line, index, lines) => (
+                  <span
+                    key={`${line}-${index}`}
+                    className={`hero-headline-line hero-headline-line-${index + 1}`}
+                  >
+                    {line}
+                  </span>
+                ))}
               </h1>
             </div>
 
@@ -175,11 +162,9 @@ export default function HeroSection({
               <Link href={cta.href} className="btn-primary">
                 {cta.text}
               </Link>
-              {secondaryCta && (
-                <Link href={secondaryCta.href} className="btn-secondary-dark">
-                  {secondaryCta.text}
-                </Link>
-              )}
+              <Link href="/contact" className="btn-secondary-dark">
+                Contact MERABA
+              </Link>
             </div>
           )}
         </div>

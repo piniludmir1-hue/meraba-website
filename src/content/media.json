@@ -1,0 +1,64 @@
+{
+  "operationalSupply": {
+    "src": "",
+    "alt": "Operational supply image",
+    "label": "Upload operational supply image"
+  },
+  "aboutHero": {
+    "src": "/images/meraba-product-supply-showcase.png",
+    "alt": "MERABA operational product supply",
+    "label": "Upload about page hero image"
+  },
+  "contactInquiry": {
+    "src": "",
+    "alt": "Product inquiry image",
+    "label": "Upload contact / product inquiry image"
+  },
+  "homepageHero": {
+    "src": "/uploads/תמונה-אתר-1.png",
+    "alt": "Operational food-service product supply setup",
+    "label": "Large hero image on the homepage"
+  },
+  "companyOperations": {
+    "src": "",
+    "alt": "Company operations image",
+    "label": "Upload company / operations image"
+  },
+  "heroMediaMode": "continuous",
+  "homepageHeroSide1": {
+    "src": "",
+    "alt": "Operational food-service product detail",
+    "label": "Top small image in the homepage hero image stack"
+  },
+  "homepageHeroSide2": {
+    "src": "",
+    "alt": "Operational food-service supply detail",
+    "label": "Middle small image in the homepage hero image stack"
+  },
+  "homepageHeroSide3": {
+    "src": "",
+    "alt": "Operational meal-service product detail",
+    "label": "Bottom small image in the homepage hero image stack"
+  },
+  "productHandling": {
+    "src": "",
+    "alt": "Product handling or warehouse image",
+    "label": "Upload product handling / warehouse image"
+  },
+  "homepageHeroContinuous": {
+    "src": "",
+    "alt": "Continuous operational food-service product supply visual",
+    "label": "Continuous image across the homepage hero media grid"
+  },
+  "contactHero": {
+    "src": "/images/meraba-product-families.png",
+    "alt": "MERABA product inquiry",
+    "label": "Upload contact page hero image"
+  },
+  "guide": "Edit website images here. Image guidance is based on the current public website layout.",
+  "productsHero": {
+    "src": "/images/meraba-product-supply-showcase.png",
+    "alt": "MERABA product supply showcase",
+    "label": "Upload products page hero image"
+  }
+}

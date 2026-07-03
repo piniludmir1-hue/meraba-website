@@ -1,0 +1,35 @@
+{
+  "guide": "These product items are stored for optional future use. They are not currently displayed on the public Products page unless a visible public section is added later.",
+  "products": [
+    {
+      "shortDescription": "Ovenable prepared-meal tray formats for food-service operations.",
+      "longDescription": "",
+      "active": true,
+      "ctaLink": "/contact",
+      "name": "Black CPET Trays",
+      "imageAlt": "Black CPET Trays",
+      "showOnProductsPage": true,
+      "sortOrder": 1,
+      "id": "black-cpet-trays",
+      "image": "",
+      "featuredOnHomepage": false,
+      "ctaText": "Request this product",
+      "category": "cpet-trays"
+    },
+    {
+      "shortDescription": "Crackers, olive snacks, and similar individually packed snack items.",
+      "longDescription": "",
+      "active": true,
+      "ctaLink": "/contact",
+      "name": "Single-Serve Snacks",
+      "imageAlt": "Single serve snacks",
+      "showOnProductsPage": true,
+      "sortOrder": 2,
+      "id": "single-serve-snacks",
+      "image": "",
+      "featuredOnHomepage": false,
+      "ctaText": "Request this product",
+      "category": "individual-snacks"
+    }
+  ]
+}

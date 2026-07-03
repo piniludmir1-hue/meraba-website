@@ -2,262 +2,177 @@
 
 import { useState } from 'react'
 import Header from '@/components/Header'
-import HeroSection from '@/components/HeroSection'
 import Footer from '@/components/Footer'
+import { content } from '@/lib/content'
 
 export default function Contact() {
+  const { contactPage } = content
   const [formData, setFormData] = useState({
     name: '',
-    email: '',
     company: '',
+    email: '',
     phone: '',
-    subject: '',
+    product: '',
+    quantity: '',
+    destination: '',
+    timeline: '',
     message: '',
   })
   const [submitted, setSubmitted] = useState(false)
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitError, setSubmitError] = useState('')
+  const [fieldErrors, setFieldErrors] = useState<Partial<Record<keyof typeof formData, string>>>({})
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }))
+    setFormData((prev) => ({ ...prev, [name]: value }))
+    setFieldErrors((prev) => ({ ...prev, [name]: undefined }))
   }
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const isValidEmail = (value: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    // Here you would typically send the form data to your backend
-    console.log('Form submitted:', formData)
-    setSubmitted(true)
-    setFormData({
-      name: '',
-      email: '',
-      company: '',
-      phone: '',
-      subject: '',
-      message: '',
+    const nextErrors: Partial<Record<keyof typeof formData, string>> = {}
+    setSubmitError('')
+
+    contactPage.formFields.forEach((field) => {
+      const fieldName = field.name as keyof typeof formData
+
+      if (field.required && !formData[fieldName].trim()) {
+        nextErrors[fieldName] = `${field.label} is required.`
+      }
     })
-    setTimeout(() => setSubmitted(false), 5000)
+
+    if (formData.email.trim() && !isValidEmail(formData.email.trim())) {
+      nextErrors.email = 'Please enter a valid email address.'
+    }
+
+    if (Object.keys(nextErrors).length > 0) {
+      setFieldErrors(nextErrors)
+      return
+    }
+
+    setIsSubmitting(true)
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      })
+
+      if (!response.ok) {
+        throw new Error('Contact request failed.')
+      }
+
+      setSubmitted(true)
+      setFieldErrors({})
+      setFormData({
+        name: '',
+        company: '',
+        email: '',
+        phone: '',
+        product: '',
+        quantity: '',
+        destination: '',
+        timeline: '',
+        message: '',
+      })
+      setTimeout(() => setSubmitted(false), 5000)
+    } catch {
+      setSubmitError('Something went wrong. Please try again or contact us directly at info@meraba.co.')
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   return (
     <>
       <Header />
-      
-      {/* Hero Section */}
-      <HeroSection
-        subtitle="Get in Touch"
-        title="Let's Work Together"
-        description="Have questions about our products or services? Our team is here to help"
-      />
 
-      {/* Contact Content */}
-      <section className="w-full bg-white py-20 md:py-32">
+      <section className="w-full bg-[#f7f5f1] py-10 md:py-12 lg:py-14">
         <div className="container-max">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-16 md:gap-20 mb-20 md:mb-32">
-            {/* Contact Info */}
-            <div className="md:col-span-1 space-y-12">
-              <div>
-                <h3 className="text-sm tracking-widest uppercase font-light text-gray-600 mb-4">
-                  Headquarters
-                </h3>
-                <p className="text-gray-600 font-light leading-relaxed">
-                  123 International Boulevard<br />
-                  New York, NY 10001<br />
-                  United States
-                </p>
-              </div>
-
-              <div>
-                <h3 className="text-sm tracking-widest uppercase font-light text-gray-600 mb-4">
-                  Contact Details
-                </h3>
-                <div className="space-y-3 text-gray-600 font-light">
-                  <p>
-                    <span className="block text-xs tracking-widest text-gray-500 mb-1">Phone</span>
-                    +1 (555) 000-0000
-                  </p>
-                  <p>
-                    <span className="block text-xs tracking-widest text-gray-500 mb-1">Email</span>
-                    info@meraba.com
-                  </p>
-                  <p>
-                    <span className="block text-xs tracking-widest text-gray-500 mb-1">Support</span>
-                    support@meraba.com
-                  </p>
-                </div>
-              </div>
-
-              <div>
-                <h3 className="text-sm tracking-widest uppercase font-light text-gray-600 mb-4">
-                  Business Hours
-                </h3>
-                <div className="space-y-2 text-sm text-gray-600 font-light">
-                  <p>Monday - Friday<br />9:00 AM - 6:00 PM EST</p>
-                  <p>Saturday<br />10:00 AM - 4:00 PM EST</p>
-                  <p>Sunday<br />Closed</p>
-                </div>
-              </div>
-            </div>
-
-            {/* Contact Form */}
-            <div className="md:col-span-2">
+          <div className="mx-auto max-w-4xl">
               {submitted ? (
-                <div className="bg-gray-50 border border-green-200 p-8 md:p-12 text-center">
-                  <p className="text-lg font-light text-gray-800 mb-2">
-                    Thank you for your message
-                  </p>
-                  <p className="text-gray-600 font-light">
-                    We'll get back to you as soon as possible
-                  </p>
+                <div className="border border-[#d5dce5] bg-[#f5f7fa] p-8 shadow-[0_24px_70px_rgba(25,44,69,0.07)]">
+                  <p className="text-lg font-semibold text-gray-950">{contactPage.successMessage.title}</p>
+                  {contactPage.successMessage.text && (
+                    <p className="mt-3 text-gray-600">{contactPage.successMessage.text}</p>
+                  )}
                 </div>
               ) : (
-                <form onSubmit={handleSubmit} className="space-y-8">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <div>
-                      <label htmlFor="name" className="block text-sm font-light tracking-widest text-gray-600 mb-3 uppercase">
-                        Name
-                      </label>
-                      <input
-                        type="text"
-                        id="name"
-                        name="name"
-                        value={formData.name}
-                        onChange={handleChange}
-                        required
-                        className="w-full border border-gray-200 px-0 py-3 text-gray-900 focus:outline-none focus:border-gray-900 transition-smooth bg-transparent font-light"
-                      />
-                    </div>
+                <form onSubmit={handleSubmit} className="industrial-panel bg-[#f5f7fa] p-7 md:p-9">
+                  <div className="mb-8 border-l-4 border-meraba pl-5">
+                    <p className="text-lg font-semibold text-gray-950">{contactPage.formIntro.reviewTitle}</p>
+                    <p className="mt-2 text-sm leading-7 text-gray-600">
+                      {contactPage.formIntro.reviewText}
+                    </p>
+                    <p className="mt-3 text-xs font-medium text-gray-500">
+                      Fields marked with * are required.
+                    </p>
+                  </div>
+                  <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+                    {contactPage.formFields.map((field) => {
+                      const fieldName = field.name as keyof typeof formData
+                      const fieldError = fieldErrors[fieldName]
 
-                    <div>
-                      <label htmlFor="email" className="block text-sm font-light tracking-widest text-gray-600 mb-3 uppercase">
-                        Email
-                      </label>
-                      <input
-                        type="email"
-                        id="email"
-                        name="email"
-                        value={formData.email}
-                        onChange={handleChange}
-                        required
-                        className="w-full border border-gray-200 px-0 py-3 text-gray-900 focus:outline-none focus:border-gray-900 transition-smooth bg-transparent font-light"
-                      />
-                    </div>
+                      return (
+                      <div key={field.name}>
+                        <label htmlFor={field.name} className="mb-3 block text-xs font-bold uppercase text-gray-600">
+                          {field.label}{field.required ? ' *' : ''}
+                        </label>
+                        <input
+                          id={field.name}
+                          name={field.name}
+                          type={field.type}
+                          value={formData[fieldName]}
+                          onChange={handleChange}
+                          required={false}
+                          aria-invalid={fieldError ? 'true' : 'false'}
+                          aria-describedby={fieldError ? `${field.name}-error` : undefined}
+                          placeholder={field.placeholder}
+                          className={`w-full border bg-white px-4 py-4 text-gray-950 outline-none transition-smooth focus:border-meraba ${fieldError ? 'border-[#b14d4d]' : 'border-[#c8d1dc]'}`}
+                        />
+                        {fieldError && (
+                          <p id={`${field.name}-error`} className="mt-2 text-[0.78rem] font-medium text-[#8f3f3f]">
+                            {fieldError}
+                          </p>
+                        )}
+                      </div>
+                      )
+                    })}
                   </div>
 
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <div>
-                      <label htmlFor="company" className="block text-sm font-light tracking-widest text-gray-600 mb-3 uppercase">
-                        Company
-                      </label>
-                      <input
-                        type="text"
-                        id="company"
-                        name="company"
-                        value={formData.company}
-                        onChange={handleChange}
-                        className="w-full border border-gray-200 px-0 py-3 text-gray-900 focus:outline-none focus:border-gray-900 transition-smooth bg-transparent font-light"
-                      />
-                    </div>
-
-                    <div>
-                      <label htmlFor="phone" className="block text-sm font-light tracking-widest text-gray-600 mb-3 uppercase">
-                        Phone
-                      </label>
-                      <input
-                        type="tel"
-                        id="phone"
-                        name="phone"
-                        value={formData.phone}
-                        onChange={handleChange}
-                        className="w-full border border-gray-200 px-0 py-3 text-gray-900 focus:outline-none focus:border-gray-900 transition-smooth bg-transparent font-light"
-                      />
-                    </div>
-                  </div>
-
-                  <div>
-                    <label htmlFor="subject" className="block text-sm font-light tracking-widest text-gray-600 mb-3 uppercase">
-                      Subject
-                    </label>
-                    <select
-                      id="subject"
-                      name="subject"
-                      value={formData.subject}
-                      onChange={handleChange}
-                      required
-                      className="w-full border border-gray-200 px-0 py-3 text-gray-900 focus:outline-none focus:border-gray-900 transition-smooth bg-transparent font-light appearance-none"
-                    >
-                      <option value="">Select a subject</option>
-                      <option value="product-inquiry">Product Inquiry</option>
-                      <option value="custom-order">Custom Order</option>
-                      <option value="quotation">Quotation Request</option>
-                      <option value="partnership">Partnership Opportunity</option>
-                      <option value="support">Support</option>
-                      <option value="other">Other</option>
-                    </select>
-                  </div>
-
-                  <div>
-                    <label htmlFor="message" className="block text-sm font-light tracking-widest text-gray-600 mb-3 uppercase">
-                      Message
+                  <div className="mt-6">
+                    <label htmlFor="message" className="mb-3 block text-xs font-bold uppercase text-gray-600">
+                      {contactPage.messageField.label}
                     </label>
                     <textarea
                       id="message"
                       name="message"
                       value={formData.message}
                       onChange={handleChange}
-                      required
                       rows={6}
-                      className="w-full border border-gray-200 px-0 py-3 text-gray-900 focus:outline-none focus:border-gray-900 transition-smooth bg-transparent font-light resize-none"
+                      placeholder={contactPage.messageField.placeholder}
+                      className="w-full resize-none border border-[#c8d1dc] bg-white px-4 py-4 text-gray-950 outline-none transition-smooth focus:border-meraba"
                     />
                   </div>
 
-                  <button
-                    type="submit"
-                    className="w-full md:w-auto px-8 md:px-12 py-4 bg-black text-white text-sm tracking-widest hover:bg-gray-900 transition-smooth uppercase font-light"
-                  >
-                    Send Message
+                  {submitError && (
+                    <p className="mt-6 border border-[#e1c2c2] bg-[#fff7f7] px-4 py-3 text-sm font-medium text-[#8f3f3f]">
+                      {submitError}
+                    </p>
+                  )}
+
+                  <button type="submit" disabled={isSubmitting} className="btn-primary mt-8 disabled:cursor-not-allowed disabled:opacity-60">
+                    {isSubmitting ? 'Sending...' : contactPage.formIntro.submitText}
                   </button>
                 </form>
               )}
-            </div>
-          </div>
-        </div>
-      </section>
 
-      {/* Additional Info */}
-      <section className="w-full bg-gray-50 py-20 md:py-32">
-        <div className="container-max">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-16">
-            <div className="text-center">
-              <div className="w-12 h-12 bg-black rounded-full flex items-center justify-center text-white mx-auto mb-6 text-xl font-light">
-                ✓
-              </div>
-              <h3 className="text-lg font-light tracking-tight mb-4">Fast Response</h3>
-              <p className="text-sm text-gray-600 font-light">
-                We respond to inquiries within 24 hours during business days
-              </p>
-            </div>
-
-            <div className="text-center">
-              <div className="w-12 h-12 bg-black rounded-full flex items-center justify-center text-white mx-auto mb-6 text-xl font-light">
-                ✓
-              </div>
-              <h3 className="text-lg font-light tracking-tight mb-4">Expert Support</h3>
-              <p className="text-sm text-gray-600 font-light">
-                Dedicated specialists ready to answer technical and commercial questions
-              </p>
-            </div>
-
-            <div className="text-center">
-              <div className="w-12 h-12 bg-black rounded-full flex items-center justify-center text-white mx-auto mb-6 text-xl font-light">
-                ✓
-              </div>
-              <h3 className="text-lg font-light tracking-tight mb-4">Custom Solutions</h3>
-              <p className="text-sm text-gray-600 font-light">
-                We tailor our offerings to meet your specific requirements and budget
-              </p>
-            </div>
           </div>
         </div>
       </section>

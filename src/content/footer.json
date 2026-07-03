@@ -1,0 +1,20 @@
+{
+  "guide": "Edit footer content here. The footer is intentionally compact: logo, useful navigation links, email, and copyright only.",
+  "navLinks": [
+    {
+      "label": "Products",
+      "href": "/products"
+    },
+    {
+      "label": "About",
+      "href": "/about"
+    },
+    {
+      "label": "Contact",
+      "href": "/contact"
+    }
+  ],
+  "email": "info@meraba.co",
+  "linkedinUrl": "https://www.linkedin.com/company/meraba/",
+  "copyrightText": "© 2026 MERABA. All rights reserved."
+}

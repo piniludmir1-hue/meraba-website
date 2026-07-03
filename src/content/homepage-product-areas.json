@@ -1,0 +1,85 @@
+{
+  "guide": "These product area cards are used only on the homepage Product Areas section. Products page categories are edited separately in Products Page Categories.",
+  "areas": [
+    {
+      "id": "Food Trays & Packaging",
+      "name": "Food Trays & Packaging",
+      "shortDescription": "CPET, fiber & PET trays and packaging.",
+      "image": "",
+      "imageAlt": "Food Trays & Packaging",
+      "sortOrder": 1,
+      "active": true,
+      "placeholderLabel": "Upload CPET tray image"
+    },
+    {
+      "id": "Salt & pepper sets",
+      "name": "Salt & pepper sets",
+      "shortDescription": "From simple paper formats to premium service styles.",
+      "image": "",
+      "imageAlt": "Salt & pepper sets",
+      "sortOrder": 2,
+      "active": true,
+      "placeholderLabel": "Upload food packaging image"
+    },
+    {
+      "id": "Aluminum containers",
+      "name": "Aluminum containers",
+      "shortDescription": "Aluminum containers and trays in multiple shapes and sizes for food-service operations.",
+      "image": "",
+      "imageAlt": "Aluminum containers",
+      "sortOrder": 3,
+      "active": true,
+      "placeholderLabel": "Upload salt & pepper product image"
+    },
+    {
+      "id": "Individual Olive Oil",
+      "name": "Individual Olive Oil",
+      "shortDescription": "Premium olive oil in elegant personal formats.",
+      "image": "",
+      "imageAlt": "Individual olive oil",
+      "sortOrder": 4,
+      "active": true,
+      "placeholderLabel": "Upload olive oil product image"
+    },
+    {
+      "id": "Individual Snacks & Desserts",
+      "name": "Individual Snacks & Desserts",
+      "shortDescription": "Personal snack and dessert items tailored to your service needs.",
+      "image": "",
+      "imageAlt": "Individual Snacks & Desserts",
+      "sortOrder": 5,
+      "active": true,
+      "placeholderLabel": "Upload individual Snacks & Desserts image"
+    },
+    {
+      "id": "Premium Tableware",
+      "name": "Premium Tableware",
+      "shortDescription": "Tableware sets for premium meal service programs.",
+      "image": "",
+      "imageAlt": "Premium Tableware",
+      "sortOrder": 6,
+      "active": true,
+      "placeholderLabel": "Premium Tableware image"
+    },
+    {
+      "id": "Portion Condiments",
+      "name": "Portion Condiments",
+      "shortDescription": "Individual sauces, spreads, and condiments for meal service.",
+      "image": "",
+      "imageAlt": "Portion Condiments",
+      "sortOrder": 7,
+      "active": true,
+      "placeholderLabel": "Upload Portion Condiments image"
+    },
+    {
+      "id": "custom-requested-products",
+      "name": "Custom / Requested Products",
+      "shortDescription": "Relevant products reviewed by item, quantity, destination, and timeline.",
+      "image": "",
+      "imageAlt": "Custom requested products",
+      "sortOrder": 8,
+      "active": true,
+      "placeholderLabel": "Upload custom product image"
+    }
+  ]
+}

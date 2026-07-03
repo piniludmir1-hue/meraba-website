@@ -1,0 +1,27 @@
+{
+  "guide": "Edit header and navigation labels here. These appear at the top of the public website.",
+  "logoAriaLabel": "MERABA home",
+  "mobileMenuAriaLabel": "Toggle menu",
+  "items": [
+    {
+      "label": "PRODUCTS",
+      "href": "/products"
+    },
+    {
+      "label": "WHY MERABA",
+      "href": "/#why-meraba"
+    },
+    {
+      "label": "SUPPLY MODEL",
+      "href": "/#supply-model"
+    },
+    {
+      "label": "ABOUT",
+      "href": "/about"
+    },
+    {
+      "label": "CONTACT",
+      "href": "/contact"
+    }
+  ]
+}

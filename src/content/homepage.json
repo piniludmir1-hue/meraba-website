@@ -1,0 +1,113 @@
+{
+  "guide": "Edit homepage content here, in the same order it appears on the public homepage.",
+  "hero": {
+    "brandStatement": "Global sourcing. Local supply. Operational certainty.",
+    "headline": "Operational products\nfor airlines, catering\nand food-service systems.",
+    "mediaMode": "continuous",
+    "continuousImage": {
+      "src": "",
+      "alt": "Continuous operational food-service product supply visual",
+      "label": "Continuous image across the homepage hero media grid"
+    },
+    "mainImage": {
+      "src": "/uploads/×ª×ž×•× ×”-××ª×¨-1.png",
+      "alt": "Operational food-service product supply setup",
+      "label": "Large hero image on the homepage"
+    },
+    "sideImage1": {
+      "src": "",
+      "alt": "Operational food-service product detail",
+      "label": "Top small image in the homepage hero image stack"
+    },
+    "sideImage2": {
+      "src": "",
+      "alt": "Operational food-service supply detail",
+      "label": "Middle small image in the homepage hero image stack"
+    },
+    "sideImage3": {
+      "src": "",
+      "alt": "Operational meal-service product detail",
+      "label": "Bottom small image in the homepage hero image stack"
+    }
+  },
+  "productSection": {
+    "label": "Product Areas",
+    "title": "Common Product Areas",
+    "noteLabel": "A note from MERABA",
+    "subtitle": "Challenge us with a product need, idea, or supply challenge  we’ll work flexibly, practically, and creatively to find the right solution.",
+    "primaryCtaText": "View Product Areas",
+    "primaryCtaLink": "/products",
+    "secondaryCtaText": "Request a Product",
+    "secondaryCtaLink": "/contact",
+    "unusedFutureFields": {
+      "legacyCategoryIds": [
+        "cpet-trays",
+        "food-packaging",
+        "salt-pepper",
+        "olive-oil",
+        "individual-snacks",
+        "cutlery-service",
+        "catering-consumables",
+        "custom-requested-products"
+      ]
+    }
+  },
+  "whyMeraba": {
+    "label": "WHY MERABA",
+    "title": "Why MERABA",
+    "intro": "Global sourcing, local supply, and operational certainty  connected into one practical supply path.",
+    "brandPanelStatement": "GLOBAL SOURCING.\nLOCAL SUPPLY.\nOPERATIONAL CERTAINTY.",
+    "items": [
+      {
+        "title": "Global sourcing access",
+        "description": "Access to manufacturers and product solutions across food-service categories."
+      },
+      {
+        "title": "Operational product fit",
+        "description": "Format, material, branding, and use case matched to the customer’s operation."
+      },
+      {
+        "title": "One point of responsibility",
+        "description": "Product, import, documentation, stock, and delivery handled through one accountable partner."
+      },
+      {
+        "title": "Operational certainty",
+        "description": "Clear next steps for quote, production, delivery, and supply continuity."
+      }
+    ]
+  },
+  "supplyModel": {
+    "label": "SUPPLY MODEL",
+    "title": "Ask for the product you need",
+    "steps": [
+      {
+        "title": "Send a product need",
+        "description": "Item, format, quantity, or use case."
+      },
+      {
+        "title": "We shape the supply path",
+        "description": "Product fit, format, requirements, and route."
+      },
+      {
+        "title": "Get a practical next step",
+        "description": "Quote, sample, stock, delivery, or supply plan."
+      }
+    ]
+  },
+  "finalCta": {
+    "label": "Contact",
+    "title": "Have a product requirement?",
+    "text": "Send the item, quantity, destination, and timeline.",
+    "buttonText": "Request a Product Quote",
+    "buttonLink": "/contact",
+    "secondaryButtonText": "Message Product Consultant"
+  },
+  "unusedFutureFields": {
+    "homepageHeroDescription": "MERABA supplies standard, custom, and requested food-service products from international factories, with local supply options when required.",
+    "homepageHeroSupportingLine": "",
+    "homepageHeroPrimaryCtaText": "Request Product Quote",
+    "homepageHeroPrimaryCtaLink": "/contact",
+    "homepageHeroSecondaryCtaText": "View Product Categories",
+    "homepageHeroSecondaryCtaLink": "/products"
+  }
+}
