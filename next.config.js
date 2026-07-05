@@ -11,6 +11,11 @@ const nextConfig = {
         destination: '/admin',
         permanent: false,
       },
+      {
+        source: '/config.yml',
+        destination: '/admin/config.yml',
+        permanent: false,
+      },
     ]
   },
 }
