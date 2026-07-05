@@ -1,4 +1,4 @@
-﻿backend:
+backend:
   name: proxy
   proxy_url: /api/decap
   branch: main
@@ -53,7 +53,7 @@ collections:
             widget: "list"
             summary: "{{fields.label}}"
             hint: "Navigation links shown in the desktop header and mobile menu. The final item uses the primary button style."
-            fields: &link_fields
+            fields:
               - { label: "Navigation Label", name: "label", widget: "string", hint: "Visible link text." }
               - { label: "Navigation Link", name: "href", widget: "string", hint: "Destination URL, for example /products or /#supply-model." }
 
@@ -87,7 +87,7 @@ collections:
                 widget: "object"
                 collapsed: true
                 hint: "This image is used only in the Homepage Hero section when Hero Media Mode is Continuous Single Image."
-                fields: &hero_continuous_image_fields
+                fields:
                   - { label: "Image Upload", name: "src", widget: "image", required: false, hint: "Recommended: 2400 x 2800 px. Minimum: 1800 x 2100 px. Aspect ratio: near-portrait, approx 6:7 to 4:5. Preferred format: JPG / JPEG or PNG, high quality. Appears as one continuous image across the full homepage hero media grid. Keep important details centered and away from tile gaps and extreme edges." }
                   - { label: "Image Alt Text", name: "alt", widget: "string", required: false, hint: "Describe the full continuous Hero visual for accessibility." }
                   - { label: "Internal Admin Label", name: "label", widget: "string", required: false, hint: "Internal admin label only. Not displayed publicly." }
@@ -96,7 +96,7 @@ collections:
                 widget: "object"
                 collapsed: true
                 hint: "Large image tile in the homepage Hero media grid. Used only on the homepage."
-                fields: &hero_main_image_fields
+                fields:
                   - { label: "Image Upload", name: "src", widget: "image", required: false, hint: "Recommended: 1200 x 2000 px. Minimum: 900 x 1500 px. Aspect ratio: tall portrait, approx 3:5. Preferred format: JPG / JPEG or PNG, high quality. Appears in the large homepage Hero tile in Separate Images mode. Keep the main subject centered and away from edges." }
                   - { label: "Image Alt Text", name: "alt", widget: "string", required: false, hint: "Describe the large homepage Hero image for accessibility." }
                   - { label: "Internal Admin Label", name: "label", widget: "string", required: false, hint: "Internal admin label only. Not displayed publicly." }
@@ -167,7 +167,7 @@ collections:
                 name: "items"
                 widget: "list"
                 summary: "{{fields.title}}"
-                fields: &title_description
+                fields:
                   - { label: "Card Title", name: "title", widget: "string", hint: "Visible card title." }
                   - { label: "Card Description", name: "description", widget: "text", hint: "Visible card description." }
           - label: "Supply Model"
@@ -182,7 +182,9 @@ collections:
                 name: "steps"
                 widget: "list"
                 summary: "{{fields.title}}"
-                fields: *title_description
+                fields:
+                  - { label: "Step Title", name: "title", widget: "string", hint: "Visible step title." }
+                  - { label: "Step Description", name: "description", widget: "text", hint: "Visible step description." }
           - label: "Final CTA / Contact CTA"
             name: "finalCta"
             widget: "object"
@@ -503,7 +505,9 @@ collections:
                 widget: "list"
                 required: false
                 summary: "{{fields.title}}"
-                fields: *title_description
+                fields:
+                  - { label: "Unused Supplier Role Item Title", name: "title", widget: "string", required: false }
+                  - { label: "Unused Supplier Role Item Description", name: "description", widget: "text", required: false }
           - label: "Unused / Future Field â€” How MERABA Works Section"
             name: "howWorks"
             widget: "object"
@@ -519,7 +523,9 @@ collections:
                 widget: "list"
                 required: false
                 summary: "{{fields.title}}"
-                fields: *title_description
+                fields:
+                  - { label: "Unused How MERABA Works Item Title", name: "title", widget: "string", required: false }
+                  - { label: "Unused How MERABA Works Item Description", name: "description", widget: "text", required: false }
           - label: "Unused / Future Field â€” Served Markets Section"
             name: "serves"
             widget: "object"
@@ -611,7 +617,9 @@ collections:
             name: "navLinks"
             widget: "list"
             summary: "{{fields.label}}"
-            fields: *link_fields
+            fields:
+              - { label: "Footer Link Label", name: "label", widget: "string", hint: "Visible footer link text." }
+              - { label: "Footer Link URL", name: "href", widget: "string", hint: "Footer link destination, for example /products." }
           - { label: "Footer Contact Email", name: "email", widget: "string", hint: "Visible email address in the footer." }
           - { label: "LinkedIn URL", name: "linkedinUrl", widget: "string", required: false, hint: "Optional. Controls the small footer LinkedIn link near the email. Leave empty to hide the LinkedIn link publicly." }
           - { label: "Footer Copyright Line", name: "copyrightText", widget: "string", hint: "Visible copyright line at the bottom of the footer." }
