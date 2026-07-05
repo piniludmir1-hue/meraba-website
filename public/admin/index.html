@@ -21,13 +21,6 @@
           .catch(function () { window.location.href = '/admin-login'; });
       });
     </script>
-    <script>
-      if (!['localhost', '127.0.0.1'].includes(window.location.hostname)) {
-        var identityScript = document.createElement('script');
-        identityScript.src = 'https://identity.netlify.com/v1/netlify-identity-widget.js';
-        document.body.appendChild(identityScript);
-      }
-    </script>
     <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
     <script src="/admin/media-original-helper.js"></script>
   </body>

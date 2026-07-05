@@ -31,6 +31,7 @@ export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl
   const isAdminPath = pathname === '/admin' || pathname.startsWith('/admin/')
   const isAdminApiPath = pathname.startsWith('/api/admin/')
+  const isDecapApiPath = pathname === '/api/decap' || pathname.startsWith('/api/decap/')
   const isPublicAdminApiPath = pathname === '/api/admin/login' || pathname === '/api/admin/logout'
 
   if (pathname === '/admin-login') {
@@ -48,7 +49,7 @@ export async function middleware(request: NextRequest) {
     }
   }
 
-  if (isAdminPath || (isAdminApiPath && !isPublicAdminApiPath)) {
+  if (isAdminPath || isDecapApiPath || (isAdminApiPath && !isPublicAdminApiPath)) {
     const sessionSecret = getAdminSessionSecret()
     const isAuthenticated = await verifyAdminSessionToken(
       request.cookies.get(adminSessionCookieName)?.value,
@@ -56,7 +57,7 @@ export async function middleware(request: NextRequest) {
     )
 
     if (!isAuthenticated) {
-      if (isAdminApiPath) {
+      if (isAdminApiPath || isDecapApiPath) {
         return withSecurityHeaders(NextResponse.json({ message: 'Authentication required.' }, { status: 401 }))
       }
 
