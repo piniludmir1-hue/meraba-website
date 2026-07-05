@@ -1344,6 +1344,56 @@ section[id] {
     }
   }
 
+  @media (max-width: 767px) {
+    .hero-home-grid {
+      gap: clamp(2.25rem, 9vw, 3rem);
+      min-height: 0;
+    }
+
+    .hero-media-composition {
+      margin-top: 0;
+      padding: clamp(0.5rem, 2vw, 0.7rem);
+    }
+
+    .hero-media-frame {
+      border-radius: 16px;
+    }
+
+    .hero-media-grid {
+      grid-template-columns: minmax(0, 1.45fr) minmax(0, 0.85fr);
+      align-items: stretch;
+      gap: clamp(0.42rem, 1.7vw, 0.62rem);
+      height: clamp(18.5rem, 78vw, 22rem);
+    }
+
+    .hero-media-main,
+    .hero-media-detail {
+      min-height: 0 !important;
+      height: 100%;
+    }
+
+    .hero-media-stack {
+      min-height: 0;
+      grid-template-rows: minmax(0, 300fr) minmax(0, 235fr) minmax(0, 185fr);
+      row-gap: clamp(0.42rem, 1.7vw, 0.62rem);
+    }
+
+    .hero-media-panel {
+      border-radius: 12px;
+    }
+
+    .hero-media-main {
+      box-shadow: 0 22px 58px rgba(0, 0, 0, 0.24);
+    }
+
+    .hero-media-main > img {
+      top: 1rem;
+      right: 1rem;
+      width: 3.4rem;
+      height: 3.4rem;
+    }
+  }
+
   @media (min-width: 1024px) and (max-width: 1279px) {
     .hero-home-section {
       --hero-copy-axis-inset: clamp(1.85rem, 2.8vw, 2.75rem);
