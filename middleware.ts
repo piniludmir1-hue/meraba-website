@@ -22,7 +22,11 @@ function isInternalRedirectTarget(value: string | null): value is string {
 
 function getLoginUrl(request: NextRequest) {
   const loginUrl = new URL('/admin-login', request.url)
-  loginUrl.searchParams.set('next', `${request.nextUrl.pathname}${request.nextUrl.search}`)
+  const nextPath = request.nextUrl.pathname === '/admin/index.html'
+    ? '/admin'
+    : `${request.nextUrl.pathname}${request.nextUrl.search}`
+
+  loginUrl.searchParams.set('next', nextPath)
 
   return loginUrl
 }
@@ -34,6 +38,20 @@ export async function middleware(request: NextRequest) {
   const isDecapApiPath = pathname === '/api/decap' || pathname.startsWith('/api/decap/')
   const isPublicAdminApiPath = pathname === '/api/admin/login' || pathname === '/api/admin/logout'
 
+  if (pathname === '/admin/index.html') {
+    const sessionSecret = getAdminSessionSecret()
+    const isAuthenticated = await verifyAdminSessionToken(
+      request.cookies.get(adminSessionCookieName)?.value,
+      sessionSecret,
+    )
+
+    if (isAuthenticated) {
+      return withSecurityHeaders(NextResponse.redirect(new URL('/admin', request.url)))
+    }
+
+    return withSecurityHeaders(NextResponse.redirect(getLoginUrl(request)))
+  }
+
   if (pathname === '/admin-login') {
     const sessionSecret = getAdminSessionSecret()
     const isAuthenticated = await verifyAdminSessionToken(
@@ -44,8 +62,9 @@ export async function middleware(request: NextRequest) {
     if (isAuthenticated) {
       const nextUrl = request.nextUrl.searchParams.get('next')
       const safeNextUrl = isInternalRedirectTarget(nextUrl) ? nextUrl : '/admin'
+      const normalizedNextUrl = safeNextUrl === '/admin/index.html' ? '/admin' : safeNextUrl
 
-      return withSecurityHeaders(NextResponse.redirect(new URL(safeNextUrl, request.url)))
+      return withSecurityHeaders(NextResponse.redirect(new URL(normalizedNextUrl, request.url)))
     }
   }
 

@@ -25,6 +25,14 @@ function isSafeRedirect(value: unknown) {
   return typeof value === 'string' && value.startsWith('/') && !value.startsWith('//')
 }
 
+function normalizeRedirect(value: unknown) {
+  if (!isSafeRedirect(value)) {
+    return '/admin'
+  }
+
+  return value === '/admin/index.html' ? '/admin' : value
+}
+
 function getAttemptState(key: string, now: number) {
   const existingAttempt = loginAttempts.get(key)
 
@@ -70,7 +78,7 @@ export async function POST(request: Request) {
 
   loginAttempts.delete(clientKey)
 
-  const redirectTo = isSafeRedirect(body.next) ? body.next : '/admin'
+  const redirectTo = normalizeRedirect(body.next)
   const response = NextResponse.json({ redirectTo })
   const sessionToken = await createAdminSessionToken(sessionSecret)
 
