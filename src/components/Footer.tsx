@@ -64,8 +64,14 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-7 border-t border-[#e1e7ef] pt-5">
+        <div className="mt-7 flex flex-col gap-3 border-t border-[#e1e7ef] pt-5 sm:flex-row sm:items-center sm:justify-between">
           <p className="text-xs text-gray-500">{footer.copyrightText}</p>
+          <Link
+            href="/accessibility"
+            className="w-fit text-xs font-medium text-gray-500 transition-smooth hover:text-meraba focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-meraba"
+          >
+            Accessibility Statement
+          </Link>
         </div>
       </div>
     </footer>

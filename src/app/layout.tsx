@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import './globals.css'
+import AccessibilityWidget from '@/components/AccessibilityWidget'
 
 export const metadata: Metadata = {
   title: 'MERABA - Food-Service Product Supplier',
@@ -24,9 +25,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="bg-white text-black">
+        <a href="#main-content" className="skip-link">
+          Skip to main content
+        </a>
         <div className="min-h-screen flex flex-col">
           {children}
         </div>
+        <AccessibilityWidget />
       </body>
     </html>
   )

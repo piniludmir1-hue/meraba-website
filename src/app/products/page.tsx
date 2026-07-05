@@ -55,6 +55,7 @@ export default function Products() {
     <>
       <Header />
 
+      <main id="main-content">
       <section className="relative overflow-hidden border-b border-[#d5dce5] bg-[#07111f] text-white">
         <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(255,255,255,0.028)_1px,transparent_1px),linear-gradient(0deg,rgba(255,255,255,0.022)_1px,transparent_1px)] bg-[size:84px_84px] opacity-38" />
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_76%_34%,rgba(143,169,190,0.13),transparent_43%),radial-gradient(circle_at_8%_92%,rgba(255,255,255,0.03),transparent_28%),linear-gradient(135deg,#111821_0%,#0b141f_55%,#050b12_100%)]" />
@@ -235,6 +236,7 @@ export default function Products() {
           </div>
         </div>
       </section>
+      </main>
 
       <Footer />
     </>

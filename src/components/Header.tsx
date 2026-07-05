@@ -74,6 +74,8 @@ export default function Header() {
             }`}
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             aria-label={navigation.mobileMenuAriaLabel}
+            aria-expanded={isMenuOpen}
+            aria-controls="mobile-navigation"
           >
             <span className={`h-px w-full bg-black transition-all ${isMenuOpen ? 'rotate-45 translate-y-2' : ''}`} />
             <span className={`h-px w-full bg-black transition-all ${isMenuOpen ? 'opacity-0' : ''}`} />
@@ -83,7 +85,7 @@ export default function Header() {
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <div className="mt-5 space-y-1 border-t border-[#d5dce5] pt-5 md:hidden">
+          <div id="mobile-navigation" className="mt-5 space-y-1 border-t border-[#d5dce5] pt-5 md:hidden">
             {navigation.items.map((item) => (
               <Link
                 key={item.href}

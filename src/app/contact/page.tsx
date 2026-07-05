@@ -93,7 +93,7 @@ export default function Contact() {
     <>
       <Header />
 
-      <section className="w-full bg-[#f7f5f1] py-10 md:py-12 lg:py-14">
+      <main id="main-content" className="w-full bg-[#f7f5f1] py-10 md:py-12 lg:py-14">
         <div className="container-max">
           <div className="mx-auto max-w-4xl">
               {submitted ? (
@@ -175,7 +175,7 @@ export default function Contact() {
 
           </div>
         </div>
-      </section>
+      </main>
 
       <Footer />
     </>

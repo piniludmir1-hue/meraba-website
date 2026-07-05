@@ -13,7 +13,7 @@ export default function About() {
     <>
       <Header />
 
-      <main className="relative overflow-hidden bg-[#f3f1ec] py-10 md:py-12 lg:py-14">
+      <main id="main-content" className="relative overflow-hidden bg-[#f3f1ec] py-10 md:py-12 lg:py-14">
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_82%_8%,rgba(8,63,104,0.08),transparent_34%),linear-gradient(135deg,rgba(255,255,255,0.56),rgba(226,231,236,0.32))]" />
         <div className="container-max relative">
           <article className="relative mx-auto max-w-5xl overflow-hidden rounded-[2px] border border-[#d7dce2] bg-[#fbfaf7] px-6 py-8 shadow-[0_28px_90px_rgba(7,17,31,0.11)] md:px-10 md:py-11 lg:px-14 lg:py-14">

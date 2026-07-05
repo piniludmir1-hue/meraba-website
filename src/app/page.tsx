@@ -18,22 +18,23 @@ export default function Home() {
     <>
       <Header />
 
-      <HeroSection
-        variant="home"
-        subtitle={homepage.hero.brandStatement.split('. ').join('.\n')}
-        title={homepage.hero.headline}
-        backgroundImage={images.homepageHero.src}
-        backgroundImageAlt={images.homepageHero.alt}
-        sideImage1={images.homepageHeroSide1.src}
-        sideImage1Alt={images.homepageHeroSide1.alt}
-        sideImage2={images.homepageHeroSide2.src}
-        sideImage2Alt={images.homepageHeroSide2.alt}
-        sideImage3={images.homepageHeroSide3.src}
-        sideImage3Alt={images.homepageHeroSide3.alt}
-        mediaMode={images.heroMediaMode === 'continuous' ? 'continuous' : 'separate'}
-        continuousImage={images.homepageHeroContinuous.src}
-        continuousImageAlt={images.homepageHeroContinuous.alt}
-      />
+      <main id="main-content">
+        <HeroSection
+          variant="home"
+          subtitle={homepage.hero.brandStatement.split('. ').join('.\n')}
+          title={homepage.hero.headline}
+          backgroundImage={images.homepageHero.src}
+          backgroundImageAlt={images.homepageHero.alt}
+          sideImage1={images.homepageHeroSide1.src}
+          sideImage1Alt={images.homepageHeroSide1.alt}
+          sideImage2={images.homepageHeroSide2.src}
+          sideImage2Alt={images.homepageHeroSide2.alt}
+          sideImage3={images.homepageHeroSide3.src}
+          sideImage3Alt={images.homepageHeroSide3.alt}
+          mediaMode={images.heroMediaMode === 'continuous' ? 'continuous' : 'separate'}
+          continuousImage={images.homepageHeroContinuous.src}
+          continuousImageAlt={images.homepageHeroContinuous.alt}
+        />
 
       <section id="products" className="home-product-overview section-fluid w-full border-b border-[#d5dce5] bg-white">
         <div className="container-max">
@@ -187,6 +188,7 @@ export default function Home() {
           </div>
         </div>
       </section>
+      </main>
 
       <Footer />
     </>

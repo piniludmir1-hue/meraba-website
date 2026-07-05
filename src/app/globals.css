@@ -16,6 +16,14 @@ html {
   font-size: clamp(16px, calc(14.5px + 0.1vw), 17px);
 }
 
+html[data-a11y-text="large"] {
+  font-size: 18px;
+}
+
+html[data-a11y-text="larger"] {
+  font-size: 20px;
+}
+
 @media (min-width: 1024px) {
   .hero-home-section .hero-home-grid {
     grid-template-columns: var(--hero-copy-column) var(--hero-media-column) !important;
@@ -37,6 +45,183 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
+}
+
+a,
+button,
+input,
+textarea,
+select {
+  outline-color: var(--meraba-blue);
+}
+
+:focus-visible {
+  outline: 2px solid var(--meraba-blue);
+  outline-offset: 4px;
+}
+
+.skip-link {
+  position: fixed;
+  left: 1rem;
+  top: 1rem;
+  z-index: 9999;
+  transform: translateY(-150%);
+  border: 1px solid var(--meraba-blue);
+  background: #ffffff;
+  color: #07111f;
+  padding: 0.85rem 1rem;
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  box-shadow: 0 18px 50px rgba(7, 17, 31, 0.14);
+  transition: transform 180ms ease;
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+}
+
+html[data-a11y-readable="true"] body {
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  letter-spacing: 0;
+}
+
+html[data-a11y-links="true"] a {
+  text-decoration: underline;
+  text-decoration-thickness: 0.08em;
+  text-underline-offset: 0.18em;
+}
+
+html[data-a11y-contrast="true"] body {
+  background: #ffffff;
+  color: #000000;
+}
+
+html[data-a11y-contrast="true"] a,
+html[data-a11y-contrast="true"] button {
+  text-decoration-thickness: 0.1em;
+}
+
+html[data-a11y-contrast="true"] :focus-visible {
+  outline-color: #000000;
+}
+
+html[data-a11y-motion="true"],
+html[data-a11y-motion="true"] * {
+  scroll-behavior: auto !important;
+}
+
+html[data-a11y-motion="true"] *,
+html[data-a11y-motion="true"] *::before,
+html[data-a11y-motion="true"] *::after {
+  animation-duration: 0.001ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.001ms !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+.accessibility-widget {
+  position: fixed;
+  right: max(1rem, env(safe-area-inset-right));
+  bottom: max(1rem, env(safe-area-inset-bottom));
+  z-index: 80;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.75rem;
+}
+
+.accessibility-toggle {
+  display: inline-flex;
+  height: 2.85rem;
+  width: 2.85rem;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(154, 171, 189, 0.85);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.94);
+  color: #07111f;
+  box-shadow: 0 16px 46px rgba(7, 17, 31, 0.12);
+  backdrop-filter: blur(12px);
+  transition: border-color 180ms ease, color 180ms ease, transform 180ms ease;
+}
+
+.accessibility-toggle:hover {
+  border-color: var(--meraba-blue);
+  color: var(--meraba-blue);
+  transform: translateY(-1px);
+}
+
+.accessibility-panel {
+  width: min(calc(100vw - 2rem), 19rem);
+  border: 1px solid rgba(154, 171, 189, 0.72);
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.97);
+  padding: 1rem;
+  color: #07111f;
+  box-shadow: 0 24px 80px rgba(7, 17, 31, 0.18);
+  backdrop-filter: blur(14px);
+}
+
+.accessibility-close {
+  display: inline-flex;
+  height: 2rem;
+  width: 2rem;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #d5dce5;
+  border-radius: 999px;
+  background: #ffffff;
+  color: #4d5b69;
+  font-size: 1.15rem;
+  line-height: 1;
+}
+
+.accessibility-option,
+.accessibility-reset {
+  min-height: 2.55rem;
+  width: 100%;
+  border: 1px solid #d5dce5;
+  border-radius: 12px;
+  background: #f7f9fb;
+  padding: 0.72rem 0.8rem;
+  text-align: left;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #283440;
+  transition: border-color 180ms ease, background-color 180ms ease, color 180ms ease;
+}
+
+.accessibility-option:hover,
+.accessibility-option[aria-pressed="true"],
+.accessibility-reset:hover {
+  border-color: var(--meraba-blue);
+  background: #ffffff;
+  color: var(--meraba-blue);
+}
+
+.accessibility-option:disabled {
+  cursor: not-allowed;
+  opacity: 0.48;
+}
+
+.accessibility-reset {
+  text-align: center;
+  background: #ffffff;
 }
 
 img,
