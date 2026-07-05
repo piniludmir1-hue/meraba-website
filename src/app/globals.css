@@ -136,8 +136,8 @@ html[data-a11y-motion="true"] *::after {
 
 .accessibility-widget {
   position: fixed;
-  right: max(1.15rem, calc(env(safe-area-inset-right) + 0.6rem));
-  bottom: max(1.15rem, calc(env(safe-area-inset-bottom) + 0.6rem));
+  right: max(1.3rem, calc(env(safe-area-inset-right) + 0.8rem));
+  bottom: max(1.45rem, calc(env(safe-area-inset-bottom) + 0.95rem));
   z-index: 80;
   display: flex;
   flex-direction: column;
@@ -153,9 +153,9 @@ html[data-a11y-motion="true"] *::after {
   justify-content: center;
   border: 1px solid rgba(154, 171, 189, 0.85);
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.94);
+  background: rgba(255, 255, 255, 0.9);
   color: #07111f;
-  box-shadow: 0 16px 46px rgba(7, 17, 31, 0.12);
+  box-shadow: 0 14px 38px rgba(7, 17, 31, 0.1);
   backdrop-filter: blur(12px);
   transition: border-color 180ms ease, color 180ms ease, transform 180ms ease;
 }

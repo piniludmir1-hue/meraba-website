@@ -1,0 +1,10 @@
+{
+  "guide": "Edit the Accessibility Statement page content here.",
+  "title": "Accessibility Statement",
+  "commitmentText": "MERABA is committed to providing a website experience that is accessible, usable, and respectful for all visitors.",
+  "complianceTargetText": "Our accessibility target is the Web Content Accessibility Guidelines (WCAG) 2.1 Level AA.",
+  "accessibilityMeasuresText": "The website includes keyboard-accessible navigation, visible focus states, semantic page landmarks, descriptive form labels, error messages, a skip-to-content link, reduced-motion support, and a lightweight accessibility control for common display adjustments.",
+  "feedbackAssistanceText": "If you experience difficulty using the MERABA website or need information in another format, please contact us.",
+  "contactEmail": "info@meraba.co",
+  "lastUpdated": "July 5, 2026"
+}

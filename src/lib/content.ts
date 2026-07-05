@@ -7,6 +7,7 @@ import homepageProductAreasData from '@/content/homepage-product-areas.json'
 import productsPage from '@/content/products-page.json'
 import aboutPage from '@/content/about-page.json'
 import contactPage from '@/content/contact-page.json'
+import accessibilityPage from '@/content/accessibility-page.json'
 import industries from '@/content/industries.json'
 import categoriesData from '@/content/categories.json'
 import productsData from '@/content/products.json'
@@ -38,6 +39,7 @@ export const content = {
   productsPage,
   aboutPage,
   contactPage,
+  accessibilityPage,
   industries,
   homepageProductAreas: homepageProductAreasData.areas,
   categories: categoriesData.categories,

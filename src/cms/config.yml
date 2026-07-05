@@ -226,7 +226,7 @@ collections:
               - { label: "Homepage Product Area Short Description", name: "shortDescription", widget: "text", hint: "Visible description on the homepage Product Area card only." }
               - { label: "Homepage Product Area Image", name: "image", widget: "image", required: false, hint: "This image is used only on the homepage Product Areas section. It will not change Products page images. Recommended: 1600 x 1200 px or larger. Minimum: 1200 x 900 px. Aspect ratio: 4:3. Preferred format: JPG / JPEG, high quality. Use a representative category image with the main subject centered. Image may crop slightly on some screen sizes." }
               - { label: "Homepage Product Area Image Alt Text", name: "imageAlt", widget: "string", required: false, hint: "Describe the homepage Product Area image for accessibility. This affects only the homepage." }
-              - { label: "Homepage Product Area Sort Order", name: "sortOrder", widget: "number", value_type: "int", hint: "Sort Order â€” admin only. Use simple numbers: 1, 2, 3, 4. Lower numbers appear first. This number is not shown publicly." }
+              - { label: "Homepage Product Area Sort Order", name: "sortOrder", widget: "number", value_type: "int", hint: "Sort Order Ã¢â‚¬â€ admin only. Use simple numbers: 1, 2, 3, 4. Lower numbers appear first. This number is not shown publicly." }
               - { label: "Homepage Product Area Active", name: "active", widget: "boolean", default: true, hint: "Turn off to hide this homepage Product Area card only." }
               - { label: "Homepage Empty Image Placeholder Label", name: "placeholderLabel", widget: "string", required: false, hint: "Internal accessibility label for empty homepage media areas. Not normally displayed publicly." }
 
@@ -318,7 +318,7 @@ collections:
               - { label: "Products Page Category Short Description", name: "shortDescription", widget: "text", hint: "Visible category description on the Products page only." }
               - { label: "Products Page Category Image", name: "image", widget: "image", required: false, hint: "This image is used only on the Products page category card. It will not change homepage Product Area images. Recommended: 1600 x 1200 px or larger. Minimum: 1200 x 900 px. Aspect ratio: 4:3. Preferred format: JPG / JPEG, high quality. Use a representative product-family / solution image. Image may crop slightly on some screen sizes. Keep the product family clear and centered." }
               - { label: "Products Page Category Image Alt Text", name: "imageAlt", widget: "string", required: false, hint: "Describe the Products page category image for accessibility. This affects only the Products page." }
-              - { label: "Products Page Category Sort Order", name: "sortOrder", widget: "number", value_type: "int", required: false, hint: "Sort Order â€” admin only. Use simple numbers: 1, 2, 3, 4. Lower numbers appear first, left to right across each row. This number is not shown publicly. For the Custom / Requested Products card: This is a special request/CTA card, not a regular product category. It always appears last on the Products page and does not need a normal Sort Order number." }
+              - { label: "Products Page Category Sort Order", name: "sortOrder", widget: "number", value_type: "int", required: false, hint: "Sort Order Ã¢â‚¬â€ admin only. Use simple numbers: 1, 2, 3, 4. Lower numbers appear first, left to right across each row. This number is not shown publicly. For the Custom / Requested Products card: This is a special request/CTA card, not a regular product category. It always appears last on the Products page and does not need a normal Sort Order number." }
               - { label: "Products Page Category Active", name: "active", widget: "boolean", default: true, hint: "Turn off to hide this category on the Products page." }
               - label: "Unused / Future Fields"
                 name: "unusedFutureFields"
@@ -330,12 +330,12 @@ collections:
                   - { label: "Card Type", name: "cardType", widget: "string", required: false, hint: "For Custom / Requested Products only: use request-cta to identify the special request/CTA card. This is not displayed publicly." }
                   - { label: "Special Last Card", name: "isSpecialLastCard", widget: "boolean", required: false, hint: "For Custom / Requested Products only: marks this as the special request/CTA card that always appears last. This is not displayed publicly." }
       - name: "specific_products"
-        label: "Specific Products / Optional Product Items â€” not currently displayed publicly"
+        label: "Specific Products / Optional Product Items Ã¢â‚¬â€ not currently displayed publicly"
         file: "src/content/products.json"
         format: "json"
         fields:
           - { label: "Admin Guide", name: "guide", widget: "text", hint: "Internal admin guide only. Not displayed publicly." }
-          - label: "Specific Products / Optional Product Items â€” not currently displayed publicly"
+          - label: "Specific Products / Optional Product Items Ã¢â‚¬â€ not currently displayed publicly"
             name: "products"
             widget: "list"
             summary: "{{fields.name}}"
@@ -352,7 +352,7 @@ collections:
               - { label: "Specific Product CTA Link", name: "ctaLink", widget: "string", required: false }
               - { label: "Featured on Homepage", name: "featuredOnHomepage", widget: "boolean", default: false, hint: "Currently not used by the homepage design unless enabled in public code." }
               - { label: "Show on Products Page", name: "showOnProductsPage", widget: "boolean", default: true, hint: "Currently relevant only if specific product cards are enabled in public code." }
-              - { label: "Sort Order", name: "sortOrder", widget: "number", value_type: "int", hint: "Sort Order â€” admin only. Controls the visual order of this product on the Products page. Use simple numbers: 1, 2, 3, 4. Lower numbers appear first, left to right across each row. This number is not shown publicly." }
+              - { label: "Sort Order", name: "sortOrder", widget: "number", value_type: "int", hint: "Sort Order Ã¢â‚¬â€ admin only. Controls the visual order of this product on the Products page. Use simple numbers: 1, 2, 3, 4. Lower numbers appear first, left to right across each row. This number is not shown publicly." }
               - { label: "Specific Product Active", name: "active", widget: "boolean", default: true }
 
   - name: "about_page"
@@ -385,7 +385,7 @@ collections:
               - { label: "Unused Internal Statement 2 Text", name: "statementTwoText", widget: "text", required: false, hint: "Not currently displayed on the public About page." }
               - { label: "Unused Internal Statement 3 Title", name: "statementThreeTitle", widget: "string", required: false, hint: "Not currently displayed on the public About page." }
               - { label: "Unused Internal Statement 3 Text", name: "statementThreeText", widget: "text", required: false, hint: "Not currently displayed on the public About page." }
-          - label: "Unused / Future Field â€” Previous About Hero"
+          - label: "Unused / Future Field Ã¢â‚¬â€ Previous About Hero"
             name: "hero"
             widget: "object"
             required: false
@@ -404,7 +404,7 @@ collections:
                   - { label: "Unused About Hero Image Upload", name: "src", widget: "image", required: false, hint: "Not currently displayed on the public About page." }
                   - { label: "Unused About Hero Image Alt Text", name: "alt", widget: "string", required: false, hint: "Not currently displayed on the public About page." }
                   - { label: "About Page Hero Image Internal Label", name: "label", widget: "string", required: false, hint: "Internal admin label only. Not displayed publicly." }
-          - label: "Unused / Future Field â€” Previous Story Section"
+          - label: "Unused / Future Field Ã¢â‚¬â€ Previous Story Section"
             name: "story"
             widget: "object"
             required: false
@@ -414,7 +414,7 @@ collections:
               - { label: "Unused Middle Statement Headline", name: "title", widget: "string", required: false }
               - { label: "Unused Middle Statement Text", name: "text", widget: "text", required: false }
               - { label: "Unused About Story Label", name: "label", widget: "string", required: false, hint: "Not currently displayed on the public About page." }
-          - label: "Unused / Future Field â€” Previous Visual Flow"
+          - label: "Unused / Future Field Ã¢â‚¬â€ Previous Visual Flow"
             name: "flow"
             widget: "object"
             required: false
@@ -435,7 +435,7 @@ collections:
                 hint: "Short trust/capability statements shown near the About page flow."
                 field: { label: "Trust Signal Text", name: "item", widget: "string" }
               - { label: "Unused Import Note Text", name: "importNote", widget: "text", required: false }
-          - label: "Unused / Future Field â€” Previous Final CTA"
+          - label: "Unused / Future Field Ã¢â‚¬â€ Previous Final CTA"
             name: "cta"
             widget: "object"
             required: false
@@ -447,7 +447,7 @@ collections:
               - { label: "Unused About Final CTA Button Label", name: "buttonText", widget: "string", required: false }
               - { label: "Unused About Final CTA Button Link", name: "buttonLink", widget: "string", required: false }
               - { label: "Unused CTA Label", name: "label", widget: "string", required: false, hint: "Not currently displayed on the public About page." }
-          - label: "Unused / Future Field â€” Previous Positioning Section"
+          - label: "Unused / Future Field Ã¢â‚¬â€ Previous Positioning Section"
             name: "positioning"
             widget: "object"
             required: false
@@ -456,7 +456,7 @@ collections:
             fields:
               - { label: "Unused Positioning Headline", name: "title", widget: "string", required: false }
               - { label: "Unused Positioning Text", name: "text", widget: "text", required: false }
-          - label: "Unused / Future Field â€” Previous Capability Cards"
+          - label: "Unused / Future Field Ã¢â‚¬â€ Previous Capability Cards"
             name: "capabilities"
             widget: "object"
             required: false
@@ -471,7 +471,7 @@ collections:
                 fields:
                   - { label: "Unused Capability Card Title", name: "title", widget: "string", required: false }
                   - { label: "Unused Capability Card Text", name: "description", widget: "text", required: false }
-          - label: "Unused / Future Field â€” Company Statement Section"
+          - label: "Unused / Future Field Ã¢â‚¬â€ Company Statement Section"
             name: "companyStatement"
             widget: "object"
             required: false
@@ -491,7 +491,7 @@ collections:
                   - { label: "Unused Company Operations Image Upload", name: "src", widget: "image", required: false }
                   - { label: "Unused Company Operations Image Alt Text", name: "alt", widget: "string", required: false }
                   - { label: "Unused Company Operations Image Internal Label", name: "label", widget: "string", required: false }
-          - label: "Unused / Future Field â€” Supplier Role Section"
+          - label: "Unused / Future Field Ã¢â‚¬â€ Supplier Role Section"
             name: "whatSupplies"
             widget: "object"
             required: false
@@ -508,7 +508,7 @@ collections:
                 fields:
                   - { label: "Unused Supplier Role Item Title", name: "title", widget: "string", required: false }
                   - { label: "Unused Supplier Role Item Description", name: "description", widget: "text", required: false }
-          - label: "Unused / Future Field â€” How MERABA Works Section"
+          - label: "Unused / Future Field Ã¢â‚¬â€ How MERABA Works Section"
             name: "howWorks"
             widget: "object"
             required: false
@@ -526,7 +526,7 @@ collections:
                 fields:
                   - { label: "Unused How MERABA Works Item Title", name: "title", widget: "string", required: false }
                   - { label: "Unused How MERABA Works Item Description", name: "description", widget: "text", required: false }
-          - label: "Unused / Future Field â€” Served Markets Section"
+          - label: "Unused / Future Field Ã¢â‚¬â€ Served Markets Section"
             name: "serves"
             widget: "object"
             required: false
@@ -535,7 +535,7 @@ collections:
             fields:
               - { label: "Unused Served Markets Label", name: "label", widget: "string", required: false }
               - { label: "Unused Served Markets Title", name: "title", widget: "string", required: false }
-          - label: "Unused / Future Field â€” Support Section"
+          - label: "Unused / Future Field Ã¢â‚¬â€ Support Section"
             name: "support"
             widget: "object"
             required: false
@@ -602,6 +602,24 @@ collections:
             fields:
               - { label: "Message Field Label", name: "label", widget: "string" }
               - { label: "Message Field Placeholder", name: "placeholder", widget: "text" }
+
+  - name: "accessibility_statement"
+    label: "Accessibility Statement"
+    description: "Edit the Accessibility Statement page content."
+    files:
+      - name: "accessibility_statement"
+        label: "Accessibility Statement"
+        file: "src/content/accessibility-page.json"
+        format: "json"
+        fields:
+          - { label: "Admin Guide", name: "guide", widget: "text", hint: "Internal admin guide only. Not displayed publicly." }
+          - { label: "Accessibility Statement Page Title", name: "title", widget: "string", hint: "Main page title on the Accessibility Statement page." }
+          - { label: "Intro / Commitment Text", name: "commitmentText", widget: "text", hint: "Appears in the Commitment section." }
+          - { label: "Compliance Target Text", name: "complianceTargetText", widget: "text", hint: "Appears in the Compliance target section." }
+          - { label: "Accessibility Measures Text", name: "accessibilityMeasuresText", widget: "text", hint: "Appears in the Accessibility measures section." }
+          - { label: "Feedback / Assistance Text", name: "feedbackAssistanceText", widget: "text", hint: "Appears in the Feedback and assistance section." }
+          - { label: "Contact Email", name: "contactEmail", widget: "string", hint: "Email used in the Accessibility assistance contact link." }
+          - { label: "Last Updated Date", name: "lastUpdated", widget: "string", hint: "Visible last updated date on the Accessibility Statement page." }
 
   - name: "footer"
     label: "Footer"
