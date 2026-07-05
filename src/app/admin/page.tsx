@@ -15,7 +15,18 @@ export default async function AdminPage() {
   }
 
   return (
-    <main id="main-content" className="min-h-screen bg-white">
+    <main id="main-content" className="bg-white">
+      <style>
+        {`
+          #nc-root {
+            position: fixed !important;
+            inset: 0 !important;
+            z-index: 1 !important;
+            overflow: auto !important;
+            background: #fff !important;
+          }
+        `}
+      </style>
       <button
         id="meraba-admin-logout"
         type="button"
