@@ -47,7 +47,7 @@ export default async function AdminPage() {
           });
         `}
       </Script>
-      <Script src="/admin/decap-cms.js" strategy="afterInteractive" />
+      <Script src="https://unpkg.com/decap-cms@3.14.1/dist/decap-cms.js" strategy="afterInteractive" />
       <Script src="/admin/media-original-helper.js" strategy="afterInteractive" />
     </main>
   )
