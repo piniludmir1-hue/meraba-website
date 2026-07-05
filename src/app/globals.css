@@ -1345,13 +1345,21 @@ section[id] {
   }
 
   @media (max-width: 767px) {
+    .accessibility-widget {
+      right: max(0.9rem, calc(env(safe-area-inset-right) + 0.65rem));
+      bottom: max(1rem, calc(env(safe-area-inset-bottom) + 0.7rem));
+    }
+
     .hero-home-grid {
       gap: clamp(2.25rem, 9vw, 3rem);
       min-height: 0;
     }
 
     .hero-media-composition {
+      width: calc(100% + 2rem);
       margin-top: 0;
+      margin-right: -1rem;
+      margin-left: -1rem;
       padding: clamp(0.5rem, 2vw, 0.7rem);
     }
 
@@ -1363,7 +1371,7 @@ section[id] {
       grid-template-columns: minmax(0, 1.45fr) minmax(0, 0.85fr);
       align-items: stretch;
       gap: clamp(0.42rem, 1.7vw, 0.62rem);
-      height: clamp(18.5rem, 78vw, 22rem);
+      height: clamp(20rem, 86vw, 24rem);
     }
 
     .hero-media-main,
