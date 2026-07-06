@@ -21,6 +21,15 @@ collections:
           - { label: "Main Email", name: "mainEmail", widget: "string", required: false, hint: "Global company email." }
           - { label: "Phone", name: "phone", widget: "string", required: false, hint: "Global company phone number." }
           - { label: "WhatsApp Number", name: "whatsappNumber", widget: "string", required: false, hint: "Digits only, for example 972533333764." }
+          - label: "Default Contact Messages"
+            name: "defaultContactMessages"
+            widget: "object"
+            collapsed: false
+            hint: "Edit the default text customers see when opening WhatsApp or Email contact links from the website. Public links are generated automatically from the saved phone/email values and these messages."
+            fields:
+              - { label: "WhatsApp Default Message", name: "whatsappDefaultMessage", widget: "text", required: false, hint: "Default message added to WhatsApp links. The website URL-encodes this text automatically." }
+              - { label: "Email Default Subject", name: "emailDefaultSubject", widget: "string", required: false, hint: "Default subject added to email links. The website URL-encodes this text automatically." }
+              - { label: "Email Default Message", name: "emailDefaultMessage", widget: "text", required: false, hint: "Default body text added to email links. The website URL-encodes this text automatically." }
           - { label: "Product Consultant Name", name: "productConsultantName", widget: "string", hint: "Appears in the Products page Product Consultant block." }
           - { label: "Product Consultant Initials", name: "productConsultantInitials", widget: "string", hint: "Appears in the Products page Product Consultant avatar." }
           - { label: "Product Consultant Title", name: "productConsultantTitle", widget: "string", hint: "Appears below the consultant name on the Products page." }

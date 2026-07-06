@@ -10,6 +10,11 @@
   "productConsultantName": "Pini Ludmir",
   "productConsultantInitials": "PL",
   "whatsappNumber": "972533333764",
+  "defaultContactMessages": {
+    "whatsappDefaultMessage": "Hello MERABA, I would like to discuss a product requirement.\n\nProduct:\nQuantity:\nDestination:\nTimeline:",
+    "emailDefaultSubject": "Product Requirement for MERABA",
+    "emailDefaultMessage": "Hello MERABA,\n\nI would like to discuss a product requirement.\n\nProduct:\nQuantity:\nDestination:\nTimeline:"
+  },
   "productConsultantWhatsapp": "https://wa.me/972533333764?text=Hello%20Pini%2C%20I%20would%20like%20to%20discuss%20a%20product%20requirement%20for%20MERABA.",
   "unusedFutureFields": {
     "siteTagline": "Global sourcing. Local supply. Operational certainty."

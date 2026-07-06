@@ -5,6 +5,7 @@ import HeroSection from '@/components/HeroSection'
 import Footer from '@/components/Footer'
 import EditableMedia from '@/components/EditableMedia'
 import { content, getHomepageCategories } from '@/lib/content'
+import { buildWhatsAppHref } from '@/lib/contactLinks'
 
 function SectionLabel({ children }: { children: ReactNode }) {
   return <p className="section-label">{children}</p>
@@ -13,6 +14,7 @@ function SectionLabel({ children }: { children: ReactNode }) {
 export default function Home() {
   const homepageCategories = getHomepageCategories()
   const { homepage, global, images } = content
+  const consultantWhatsappHref = buildWhatsAppHref(global.whatsappNumber, global.defaultContactMessages)
 
   return (
     <>
@@ -175,7 +177,7 @@ export default function Home() {
                     {homepage.finalCta.buttonText}
                   </Link>
                   <a
-                    href={global.productConsultantWhatsapp}
+                    href={consultantWhatsappHref}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="btn-secondary-dark"

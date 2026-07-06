@@ -1,12 +1,13 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { content } from '@/lib/content'
+import { buildEmailHref } from '@/lib/contactLinks'
 
 export default function Footer() {
   const footer = content.footer
   const footerEmail = footer.email.trim()
   const linkedinUrl = footer.linkedinUrl?.trim()
-  const emailHref = `mailto:${footerEmail}`
+  const emailHref = buildEmailHref(footerEmail, content.global.defaultContactMessages)
 
   return (
     <footer className="w-full border-t border-[#d5dce5] bg-white text-gray-950">
