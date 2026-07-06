@@ -1182,6 +1182,11 @@ section[id] {
   }
 
   .hero-media-image {
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     filter: saturate(0.9) contrast(1.06);
     transition: filter 500ms ease-out, transform 950ms ease-out;
   }
@@ -1356,11 +1361,11 @@ section[id] {
     }
 
     .hero-media-composition {
-      width: calc(100% + 3rem);
+      width: calc(100% + 2.5rem);
       max-width: none;
       margin-top: 0;
-      margin-right: -2rem;
-      margin-left: -1rem;
+      margin-right: -1.75rem;
+      margin-left: -0.75rem;
       padding: clamp(0.5rem, 2vw, 0.7rem);
     }
 
