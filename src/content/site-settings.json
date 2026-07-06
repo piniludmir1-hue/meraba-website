@@ -6,17 +6,17 @@
   "productConsultantTitle": "Product Consultant",
   "productConsultantEmail": "pini@meraba.co",
   "websiteUrl": "https://meraba.co",
-  "productConsultantGmail": "https://mail.google.com/mail/?view=cm&fs=1&to=pini@meraba.co&su=Product%20Requirement%20for%20MERABA&body=Hello%20Pini%2C%0A%0AI%20would%20like%20to%20discuss%20a%20product%20requirement%20for%20MERABA.%0A%0AProduct%3A%0AQuantity%3A%0ADestination%3A%0ATimeline%3A",
   "productConsultantName": "Pini Ludmir",
   "productConsultantInitials": "PL",
   "whatsappNumber": "972533333764",
   "defaultContactMessages": {
-    "whatsappDefaultMessage": "Hello MERABA, I would like to discuss a product requirement.\n\nProduct:\nQuantity:\nDestination:\nTimeline:",
-    "emailDefaultSubject": "Product Requirement for MERABA",
-    "emailDefaultMessage": "Hello MERABA,\n\nI would like to discuss a product requirement.\n\nProduct:\nQuantity:\nDestination:\nTimeline:"
+    "emailSubject": "Product Requirement for MERABA",
+    "emailBody": "Hello MERABA,\n\nI would like to discuss a product requirement.\n\nProduct:\nQuantity:\nDestination:\nTimeline:",
+    "whatsappPrefilledMessage": "Hello MERABA, I would like to discuss a product requirement.\n\nProduct:\nQuantity:\nDestination:\nTimeline:"
   },
-  "productConsultantWhatsapp": "https://wa.me/972533333764?text=Hello%20Pini%2C%20I%20would%20like%20to%20discuss%20a%20product%20requirement%20for%20MERABA.",
   "unusedFutureFields": {
-    "siteTagline": "Global sourcing. Local supply. Operational certainty."
+    "siteTagline": "Global sourcing. Local supply. Operational certainty.",
+    "productConsultantWhatsapp": "https://wa.me/972533333764?text=Hello%20Pini%2C%20I%20would%20like%20to%20discuss%20a%20product%20requirement%20for%20MERABA.",
+    "productConsultantGmail": "https://mail.google.com/mail/?view=cm&fs=1&to=pini@meraba.co&su=Product%20Requirement%20for%20MERABA&body=Hello%20Pini%2C%0A%0AI%20would%20like%20to%20discuss%20a%20product%20requirement%20for%20MERABA.%0A%0AProduct%3A%0AQuantity%3A%0ADestination%3A%0ATimeline%3A"
   }
 }

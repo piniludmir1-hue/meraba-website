@@ -1,9 +1,11 @@
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import { content } from '@/lib/content'
+import { buildEmailHref } from '@/lib/contactLinks'
 
 export default function AccessibilityStatement() {
   const accessibility = content.accessibilityPage
+  const accessibilityEmailHref = buildEmailHref(accessibility.contactEmail, content.global.defaultContactMessages)
   const sections = [
     {
       id: 'accessibility-commitment',
@@ -66,7 +68,7 @@ export default function AccessibilityStatement() {
                     </h2>
                     <p className="mt-3 text-sm leading-7 text-gray-600">
                       For accessibility feedback or assistance, contact MERABA at{' '}
-                      <a className="font-semibold text-meraba underline-offset-4 hover:underline" href={`mailto:${accessibility.contactEmail}`}>
+                      <a className="font-semibold text-meraba underline-offset-4 hover:underline" href={accessibilityEmailHref}>
                         {accessibility.contactEmail}
                       </a>
                       .

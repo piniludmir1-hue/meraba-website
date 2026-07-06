@@ -21,22 +21,20 @@ collections:
           - { label: "Main Email", name: "mainEmail", widget: "string", required: false, hint: "Global company email." }
           - { label: "Phone", name: "phone", widget: "string", required: false, hint: "Global company phone number." }
           - { label: "WhatsApp Number", name: "whatsappNumber", widget: "string", required: false, hint: "Digits only, for example 972533333764." }
-          - label: "Default Contact Messages"
+          - label: "Contact Messages"
             name: "defaultContactMessages"
             widget: "object"
             collapsed: false
-            hint: "Edit the default text customers see when opening WhatsApp or Email contact links from the website. Public links are generated automatically from the saved phone/email values and these messages."
+            hint: "Central settings for the prefilled message text used by every public Email and WhatsApp contact link. Recipient emails and WhatsApp number are edited in the fields above/below; these message values are used automatically everywhere."
             fields:
-              - { label: "WhatsApp Default Message", name: "whatsappDefaultMessage", widget: "text", required: false, hint: "Default message added to WhatsApp links. The website URL-encodes this text automatically." }
-              - { label: "Email Default Subject", name: "emailDefaultSubject", widget: "string", required: false, hint: "Default subject added to email links. The website URL-encodes this text automatically." }
-              - { label: "Email Default Message", name: "emailDefaultMessage", widget: "text", required: false, hint: "Default body text added to email links. The website URL-encodes this text automatically." }
+              - { label: "Email Subject", name: "emailSubject", widget: "string", required: false, hint: "Subject used by every public Email link. If empty, the website uses the current default subject so links keep working." }
+              - { label: "Email Body", name: "emailBody", widget: "text", required: false, hint: "Body text used by every public Email link. If empty, the website uses the current default body so links keep working." }
+              - { label: "WhatsApp Prefilled Message", name: "whatsappPrefilledMessage", widget: "text", required: false, hint: "Message used by every public WhatsApp link. If empty, the website uses the current default message so links keep working." }
           - { label: "Product Consultant Name", name: "productConsultantName", widget: "string", hint: "Appears in the Products page Product Consultant block." }
           - { label: "Product Consultant Initials", name: "productConsultantInitials", widget: "string", hint: "Appears in the Products page Product Consultant avatar." }
           - { label: "Product Consultant Title", name: "productConsultantTitle", widget: "string", hint: "Appears below the consultant name on the Products page." }
           - { label: "Product Consultant Email", name: "productConsultantEmail", widget: "string", hint: "Visible consultant email on the Products page." }
           - { label: "Product Consultant Phone", name: "productConsultantPhone", widget: "string", hint: "Visible consultant phone / WhatsApp number on the Products page." }
-          - { label: "Product Consultant WhatsApp Link", name: "productConsultantWhatsapp", widget: "string", hint: "Full WhatsApp link used by consultant buttons and footer CTA links." }
-          - { label: "Product Consultant Gmail Compose Link", name: "productConsultantGmail", widget: "string", hint: "Browser-based Gmail compose link used by consultant email buttons." }
           - label: "Unused / Future Fields"
             name: "unusedFutureFields"
             widget: "object"
@@ -44,6 +42,8 @@ collections:
             hint: "These fields are not currently displayed on the public website."
             fields:
               - { label: "Unused Site Tagline", name: "siteTagline", widget: "string", required: false, hint: "Not currently displayed on the public website." }
+              - { label: "Legacy Product Consultant WhatsApp Link", name: "productConsultantWhatsapp", widget: "string", required: false, hint: "Legacy stored value only. Public WhatsApp links are generated from WhatsApp Number and Contact Messages." }
+              - { label: "Legacy Product Consultant Gmail Compose Link", name: "productConsultantGmail", widget: "string", required: false, hint: "Legacy stored value only. Public email links are generated from recipient email fields and Contact Messages." }
 
   - name: "header_navigation"
     label: "Header / Navigation"

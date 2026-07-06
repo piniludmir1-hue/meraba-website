@@ -6,7 +6,7 @@ import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import { content, getProductsPageCategories } from '@/lib/content'
 import { getCategoryCardImageSources } from '@/lib/categoryImage'
-import { buildEmailHref, buildWhatsAppHref } from '@/lib/contactLinks'
+import { buildGmailComposeHref, buildWhatsAppHref } from '@/lib/contactLinks'
 
 function ProductVisual({ src, alt, dark = false }: { src?: string; alt?: string; dark?: boolean }) {
   const imageSources = src ? getCategoryCardImageSources(src) : undefined
@@ -49,7 +49,7 @@ function ProductVisual({ src, alt, dark = false }: { src?: string; alt?: string;
 export default function Products() {
   const productTypes = getProductsPageCategories()
   const { productsPage, global } = content
-  const consultantEmailHref = buildEmailHref(global.productConsultantEmail, global.defaultContactMessages)
+  const consultantEmailHref = buildGmailComposeHref(global.productConsultantEmail, global.defaultContactMessages)
   const consultantWhatsappHref = buildWhatsAppHref(global.whatsappNumber, global.defaultContactMessages)
 
   return (
