@@ -15,7 +15,7 @@
       "label": "Large hero image on the homepage"
     },
     "sideImage1": {
-      "src": "",
+      "src": "/uploads/תמונה-1500_2500.png",
       "alt": "Operational food-service product detail",
       "label": "Top small image in the homepage hero image stack"
     },
@@ -31,14 +31,9 @@
     }
   },
   "productSection": {
-    "label": "Product Areas",
-    "title": "Common Product Areas",
     "noteLabel": "A note from MERABA",
-    "subtitle": "Challenge us with a product need, idea, or supply challenge  we’ll work flexibly, practically, and creatively to find the right solution.",
-    "primaryCtaText": "View Product Areas",
     "primaryCtaLink": "/products",
     "secondaryCtaText": "Request a Product",
-    "secondaryCtaLink": "/contact",
     "unusedFutureFields": {
       "legacyCategoryIds": [
         "cpet-trays",
@@ -50,7 +45,12 @@
         "catering-consumables",
         "custom-requested-products"
       ]
-    }
+    },
+    "label": "Product Areas",
+    "secondaryCtaLink": "/contact",
+    "subtitle": "Challenge us with a product need, idea, or supply challenge  we’ll work flexibly, practically, and creatively to find the right solution.",
+    "title": "Common Product Areas",
+    "primaryCtaText": "View Product Areas"
   },
   "whyMeraba": {
     "label": "WHY MERABA",
