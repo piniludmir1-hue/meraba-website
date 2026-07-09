@@ -2,6 +2,19 @@ import crypto from 'crypto'
 import path from 'path'
 import { promises as fs } from 'fs'
 import { NextResponse } from 'next/server'
+import {
+  deleteCmsDocument,
+  deleteCmsMedia,
+  isSupabaseCmsConfigured,
+  listCmsDocuments,
+  listCmsMedia,
+  normalizeCmsPath,
+  readCmsDocument,
+  readCmsMedia,
+  revalidateCmsContent,
+  uploadCmsMedia,
+  upsertCmsDocument,
+} from '@/lib/supabaseCms'
 
 export const runtime = 'nodejs'
 export const dynamic = 'force-dynamic'
@@ -24,7 +37,6 @@ type DecapRequest = {
 }
 
 const repoRoot = process.cwd()
-const githubApiBase = 'https://api.github.com'
 const allowedRoots = [
   {
     publicPrefix: 'src/content',
@@ -36,32 +48,13 @@ const allowedRoots = [
   },
 ]
 
-function normalizePath(filePath: string) {
-  return filePath.replace(/\\/g, '/')
-}
-
-function getGithubConfig() {
-  const token = process.env.GITHUB_TOKEN || ''
-  const owner = process.env.GITHUB_OWNER || ''
-  const repo = process.env.GITHUB_REPO || ''
-  const branch = process.env.GITHUB_BRANCH || 'main'
-
-  return {
-    token,
-    owner,
-    repo,
-    branch,
-    enabled: Boolean(token && owner && repo && branch),
-  }
-}
-
 function canUseLocalCmsFallback() {
   return process.env.NODE_ENV !== 'production'
 }
 
 function assertCmsPersistenceAvailable() {
-  if (!getGithubConfig().enabled && !canUseLocalCmsFallback()) {
-    throw new Error('GitHub CMS persistence is not configured. Set GITHUB_TOKEN, GITHUB_OWNER, GITHUB_REPO, and GITHUB_BRANCH.')
+  if (!isSupabaseCmsConfigured() && !canUseLocalCmsFallback()) {
+    throw new Error('Supabase CMS is not configured. Set SUPABASE_URL, SUPABASE_ANON_KEY, and SUPABASE_SERVICE_ROLE_KEY.')
   }
 }
 
@@ -69,8 +62,8 @@ function sha256(content: Buffer) {
   return crypto.createHash('sha256').update(content).digest('hex')
 }
 
-function getAllowedRepoPath(filePath: string) {
-  const normalizedPath = normalizePath(filePath).replace(/^\/+/, '')
+function resolveRepoPath(filePath: string) {
+  const normalizedPath = normalizeCmsPath(filePath)
   const matchingRoot = allowedRoots.find(
     (root) => normalizedPath === root.publicPrefix || normalizedPath.startsWith(`${root.publicPrefix}/`),
   )
@@ -80,16 +73,6 @@ function getAllowedRepoPath(filePath: string) {
   }
 
   const relativePath = normalizedPath.slice(matchingRoot.publicPrefix.length).replace(/^\/+/, '')
-
-  return {
-    normalizedPath,
-    matchingRoot,
-    relativePath,
-  }
-}
-
-function resolveRepoPath(filePath: string) {
-  const { matchingRoot, relativePath } = getAllowedRepoPath(filePath)
   const resolvedPath = path.resolve(matchingRoot.absolutePath, relativePath)
 
   if (!resolvedPath.startsWith(matchingRoot.absolutePath)) {
@@ -99,190 +82,53 @@ function resolveRepoPath(filePath: string) {
   return resolvedPath
 }
 
-function encodeRepoPath(filePath: string) {
-  return getAllowedRepoPath(filePath)
-    .normalizedPath
-    .split('/')
-    .map(encodeURIComponent)
-    .join('/')
-}
-
-function contentToBase64(content: string | Buffer) {
-  return Buffer.isBuffer(content)
-    ? content.toString('base64')
-    : Buffer.from(content, 'utf8').toString('base64')
-}
-
-function base64ToBuffer(content: string) {
-  return Buffer.from(content.replace(/\s/g, ''), 'base64')
-}
-
-async function githubRequest<T>(url: string, init: RequestInit = {}) {
-  const github = getGithubConfig()
-
-  if (!github.enabled) {
-    throw new Error('GitHub CMS persistence is not configured.')
-  }
-
-  const response = await fetch(url, {
-    ...init,
-    headers: {
-      Accept: 'application/vnd.github+json',
-      Authorization: `Bearer ${github.token}`,
-      'User-Agent': 'meraba-cms',
-      'X-GitHub-Api-Version': '2022-11-28',
-      ...(init.headers || {}),
-    },
-  })
-
-  if (!response.ok) {
-    const text = await response.text().catch(() => '')
-    throw new Error(`GitHub API request failed (${response.status}): ${text || response.statusText}`)
-  }
-
-  return response.json() as Promise<T>
-}
-
-async function githubRawFile(filePath: string) {
-  const github = getGithubConfig()
-  const encodedPath = encodeRepoPath(filePath)
-  const url = `${githubApiBase}/repos/${github.owner}/${github.repo}/contents/${encodedPath}?ref=${encodeURIComponent(github.branch)}`
-  const response = await fetch(url, {
-    headers: {
-      Accept: 'application/vnd.github.raw',
-      Authorization: `Bearer ${github.token}`,
-      'User-Agent': 'meraba-cms',
-      'X-GitHub-Api-Version': '2022-11-28',
-    },
-  })
-
-  if (!response.ok) {
-    const text = await response.text().catch(() => '')
-    throw new Error(`GitHub raw file request failed (${response.status}): ${text || response.statusText}`)
-  }
-
-  return Buffer.from(await response.arrayBuffer())
-}
-
-async function getGithubContent(filePath: string) {
-  const github = getGithubConfig()
-  const encodedPath = encodeRepoPath(filePath)
-  const url = `${githubApiBase}/repos/${github.owner}/${github.repo}/contents/${encodedPath}?ref=${encodeURIComponent(github.branch)}`
-
-  return githubRequest<{
-    type: 'file' | 'dir'
-    path: string
-    name: string
-    sha: string
-    content?: string
-    encoding?: string
-  }>(url)
-}
-
-async function getGithubContentIfExists(filePath: string) {
+function parseJson(raw: string) {
   try {
-    return await getGithubContent(filePath)
-  } catch (error) {
-    if (error instanceof Error && error.message.includes('(404)')) {
-      return null
-    }
-
-    throw error
+    return JSON.parse(raw)
+  } catch {
+    throw new Error('Invalid JSON content.')
   }
 }
 
-async function listGithubFiles(folder: string, extension: string, depth: number): Promise<string[]> {
-  if (depth <= 0) {
-    return []
+function inferMimeType(filePath: string) {
+  const extension = path.extname(filePath).toLowerCase()
+
+  switch (extension) {
+    case '.avif':
+      return 'image/avif'
+    case '.gif':
+      return 'image/gif'
+    case '.jpg':
+    case '.jpeg':
+      return 'image/jpeg'
+    case '.png':
+      return 'image/png'
+    case '.svg':
+      return 'image/svg+xml'
+    case '.webp':
+      return 'image/webp'
+    default:
+      return 'application/octet-stream'
   }
-
-  const github = getGithubConfig()
-  const encodedPath = encodeRepoPath(folder)
-  const url = `${githubApiBase}/repos/${github.owner}/${github.repo}/contents/${encodedPath}?ref=${encodeURIComponent(github.branch)}`
-  const entries = await githubRequest<Array<{ type: 'file' | 'dir'; path: string; name: string }>>(url)
-  const files = await Promise.all(
-    entries.map(async (entry) => {
-      if (entry.type === 'dir') {
-        return listGithubFiles(entry.path, extension, depth - 1)
-      }
-
-      return !extension || entry.path.endsWith(extension) ? [normalizePath(entry.path)] : []
-    }),
-  )
-
-  return files.flat()
 }
 
-async function writeGithubFile(filePath: string, content: string | Buffer, message: string) {
-  const github = getGithubConfig()
-  const encodedPath = encodeRepoPath(filePath)
-  const existingFile = await getGithubContentIfExists(filePath)
-  const url = `${githubApiBase}/repos/${github.owner}/${github.repo}/contents/${encodedPath}`
-
-  return githubRequest(url, {
-    method: 'PUT',
-    body: JSON.stringify({
-      message,
-      content: contentToBase64(content),
-      branch: github.branch,
-      ...(existingFile?.sha ? { sha: existingFile.sha } : {}),
-    }),
-  })
-}
-
-async function deleteGithubFile(filePath: string, message: string) {
-  const github = getGithubConfig()
-  const encodedPath = encodeRepoPath(filePath)
-  const existingFile = await getGithubContentIfExists(filePath)
-
-  if (!existingFile?.sha) {
-    return
-  }
-
-  const url = `${githubApiBase}/repos/${github.owner}/${github.repo}/contents/${encodedPath}`
-
-  await githubRequest(url, {
-    method: 'DELETE',
-    body: JSON.stringify({
-      message,
-      sha: existingFile.sha,
-      branch: github.branch,
-    }),
-  })
-}
-
-async function readEntry(filePath: string, label?: string) {
+async function readLocalEntry(filePath: string, label?: string) {
   try {
-    const github = getGithubConfig()
-    assertCmsPersistenceAvailable()
-    const content = github.enabled
-      ? base64ToBuffer((await getGithubContent(filePath)).content || '')
-      : await fs.readFile(resolveRepoPath(filePath))
+    const content = await fs.readFile(resolveRepoPath(filePath))
 
     return {
       data: content.toString(),
       file: {
-        path: normalizePath(filePath),
+        path: normalizeCmsPath(filePath),
         label,
         id: sha256(content),
       },
     }
-  } catch (error) {
-    const github = getGithubConfig()
-    const message = error instanceof Error ? error.message : ''
-
-    if (!canUseLocalCmsFallback() && !github.enabled) {
-      throw error
-    }
-
-    if (github.enabled && !message.includes('(404)')) {
-      throw error
-    }
-
+  } catch {
     return {
       data: null,
       file: {
-        path: normalizePath(filePath),
+        path: normalizeCmsPath(filePath),
         label,
         id: null,
       },
@@ -290,18 +136,42 @@ async function readEntry(filePath: string, label?: string) {
   }
 }
 
-async function listFiles(folder: string, extension: string, depth: number): Promise<string[]> {
+async function readEntry(filePath: string, label?: string) {
+  assertCmsPersistenceAvailable()
+
+  if (!isSupabaseCmsConfigured()) {
+    return readLocalEntry(filePath, label)
+  }
+
+  const data = await readCmsDocument(filePath)
+
+  if (!data) {
+    return {
+      data: null,
+      file: {
+        path: normalizeCmsPath(filePath),
+        label,
+        id: null,
+      },
+    }
+  }
+
+  const content = Buffer.from(JSON.stringify(data, null, 2))
+
+  return {
+    data: content.toString(),
+    file: {
+      path: normalizeCmsPath(filePath),
+      label,
+      id: sha256(content),
+    },
+  }
+}
+
+async function listLocalFiles(folder: string, extension: string, depth: number): Promise<string[]> {
   if (depth <= 0) {
     return []
   }
-
-  const github = getGithubConfig()
-
-  if (github.enabled) {
-    return listGithubFiles(folder, extension, depth)
-  }
-
-  assertCmsPersistenceAvailable()
 
   try {
     const folderPath = resolveRepoPath(folder)
@@ -311,10 +181,10 @@ async function listFiles(folder: string, extension: string, depth: number): Prom
         const entryPath = path.join(folder, entry.name)
 
         if (entry.isDirectory()) {
-          return listFiles(entryPath, extension, depth - 1)
+          return listLocalFiles(entryPath, extension, depth - 1)
         }
 
-        return !extension || entryPath.endsWith(extension) ? [normalizePath(entryPath)] : []
+        return !extension || entryPath.endsWith(extension) ? [normalizeCmsPath(entryPath)] : []
       }),
     )
 
@@ -324,15 +194,41 @@ async function listFiles(folder: string, extension: string, depth: number): Prom
   }
 }
 
-async function writeFile(filePath: string, content: string | Buffer) {
-  const github = getGithubConfig()
+async function listFiles(folder: string, extension: string, depth: number): Promise<string[]> {
+  assertCmsPersistenceAvailable()
 
-  if (github.enabled) {
-    await writeGithubFile(filePath, content, `Update ${normalizePath(filePath)}`)
+  if (!isSupabaseCmsConfigured()) {
+    return listLocalFiles(folder, extension, depth)
+  }
+
+  const documents = await listCmsDocuments(folder)
+
+  return documents
+    .map((document) => normalizeCmsPath(document.path))
+    .filter((filePath) => !extension || filePath.endsWith(extension))
+}
+
+async function writeEntry(filePath: string, raw: string) {
+  assertCmsPersistenceAvailable()
+
+  if (isSupabaseCmsConfigured()) {
+    await upsertCmsDocument(filePath, parseJson(raw))
     return
   }
 
+  const resolvedPath = resolveRepoPath(filePath)
+
+  await fs.mkdir(path.dirname(resolvedPath), { recursive: true })
+  await fs.writeFile(resolvedPath, raw)
+}
+
+async function writeMedia(filePath: string, content: Buffer) {
   assertCmsPersistenceAvailable()
+
+  if (isSupabaseCmsConfigured()) {
+    await uploadCmsMedia(filePath, content, inferMimeType(filePath))
+    return
+  }
 
   const resolvedPath = resolveRepoPath(filePath)
 
@@ -341,29 +237,36 @@ async function writeFile(filePath: string, content: string | Buffer) {
 }
 
 async function deleteFile(filePath: string) {
-  const github = getGithubConfig()
+  assertCmsPersistenceAvailable()
 
-  if (github.enabled) {
-    await deleteGithubFile(filePath, `Delete ${normalizePath(filePath)}`)
+  if (isSupabaseCmsConfigured()) {
+    const normalizedPath = normalizeCmsPath(filePath)
+
+    if (normalizedPath.startsWith('src/content/')) {
+      await deleteCmsDocument(filePath)
+    } else if (normalizedPath.startsWith('public/uploads/')) {
+      await deleteCmsMedia(filePath)
+    }
+
     return
   }
-
-  assertCmsPersistenceAvailable()
 
   await fs.unlink(resolveRepoPath(filePath)).catch(() => undefined)
 }
 
 async function renameFile(filePath: string, newPath: string) {
-  const github = getGithubConfig()
+  assertCmsPersistenceAvailable()
 
-  if (github.enabled) {
-    const content = await githubRawFile(filePath)
-    await writeGithubFile(newPath, content, `Move ${normalizePath(filePath)} to ${normalizePath(newPath)}`)
-    await deleteGithubFile(filePath, `Remove moved file ${normalizePath(filePath)}`)
+  if (isSupabaseCmsConfigured()) {
+    const entry = await readCmsDocument(filePath)
+
+    if (entry) {
+      await upsertCmsDocument(newPath, entry)
+      await deleteCmsDocument(filePath)
+    }
+
     return
   }
-
-  assertCmsPersistenceAvailable()
 
   const from = resolveRepoPath(filePath)
   const to = resolveRepoPath(newPath)
@@ -373,17 +276,16 @@ async function renameFile(filePath: string, newPath: string) {
 }
 
 async function readMediaFile(filePath: string) {
-  const github = getGithubConfig()
   assertCmsPersistenceAvailable()
-  const content = github.enabled
-    ? await githubRawFile(filePath)
+  const content = isSupabaseCmsConfigured()
+    ? await readCmsMedia(filePath)
     : await fs.readFile(resolveRepoPath(filePath))
 
   return {
     id: sha256(content),
     content: content.toString('base64'),
     encoding: 'base64',
-    path: normalizePath(filePath),
+    path: normalizeCmsPath(filePath),
     name: path.basename(filePath),
   }
 }
@@ -417,7 +319,7 @@ export async function POST(request: Request) {
         return NextResponse.json({
           repo: path.basename(repoRoot),
           publish_modes: ['simple'],
-          type: getGithubConfig().enabled ? 'github' : 'local_fs',
+          type: isSupabaseCmsConfigured() ? 'supabase' : 'local_fs',
         })
 
       case 'entriesByFiles': {
@@ -451,9 +353,9 @@ export async function POST(request: Request) {
         const dataFiles = (Array.isArray(params.dataFiles) ? params.dataFiles : entry ? [entry] : []) as DecapDataFile[]
         const assets = (Array.isArray(params.assets) ? params.assets : []) as DecapAsset[]
 
-        await Promise.all(dataFiles.map((file) => writeFile(file.path, file.raw)))
+        await Promise.all(dataFiles.map((file) => writeEntry(file.path, file.raw)))
         await Promise.all(
-          assets.map((asset) => writeFile(asset.path, Buffer.from(asset.content, asset.encoding))),
+          assets.map((asset) => writeMedia(asset.path, Buffer.from(asset.content, asset.encoding))),
         )
         await Promise.all(
           dataFiles
@@ -461,12 +363,21 @@ export async function POST(request: Request) {
             .map((file) => renameFile(file.path, file.newPath as string)),
         )
 
+        revalidateCmsContent()
+
         return NextResponse.json({ message: 'entry persisted' })
       }
 
       case 'getMedia': {
+        if (isSupabaseCmsConfigured()) {
+          const mediaFiles = await listCmsMedia()
+          const serializedMedia = await Promise.all(mediaFiles.map((file) => readMediaFile(file.path)))
+
+          return NextResponse.json(serializedMedia)
+        }
+
         const mediaFolder = asString(params.mediaFolder)
-        const mediaFiles = await listFiles(mediaFolder, '', 1)
+        const mediaFiles = await listLocalFiles(mediaFolder, '', 1)
         const serializedMedia = await Promise.all(mediaFiles.map((filePath) => readMediaFile(filePath)))
 
         return NextResponse.json(serializedMedia)
@@ -482,18 +393,21 @@ export async function POST(request: Request) {
           return NextResponse.json({ error: 'Missing media asset.' }, { status: 422 })
         }
 
-        await writeFile(asset.path, Buffer.from(asset.content, asset.encoding))
+        await writeMedia(asset.path, Buffer.from(asset.content, asset.encoding))
+        revalidateCmsContent()
 
         return NextResponse.json(await readMediaFile(asset.path))
       }
 
       case 'deleteFile':
         await deleteFile(asString(params.path))
+        revalidateCmsContent()
         return NextResponse.json({ message: `deleted file ${asString(params.path)}` })
 
       case 'deleteFiles': {
         const paths = Array.isArray(params.paths) ? params.paths.map(asString) : []
         await Promise.all(paths.map((filePath) => deleteFile(filePath)))
+        revalidateCmsContent()
 
         return NextResponse.json({ message: `deleted files ${paths.join(', ')}` })
       }
