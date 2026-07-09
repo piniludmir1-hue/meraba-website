@@ -73,25 +73,49 @@ async function supabaseJsonRequest<T>(path: string, init: RequestInit = {}) {
     return null as T
   }
 
-  return response.json() as Promise<T>
+  const text = await response.text()
+  return (text ? JSON.parse(text) : null) as T
 }
 
 export function normalizeCmsPath(filePath: string) {
   return filePath.replace(/\\/g, '/').replace(/^\/+/, '')
 }
 
+function safeStorageSegment(segment: string) {
+  let hashValue = 2166136261
+
+  for (let index = 0; index < segment.length; index += 1) {
+    hashValue ^= segment.charCodeAt(index)
+    hashValue = Math.imul(hashValue, 16777619)
+  }
+
+  const hash = (hashValue >>> 0).toString(36).slice(0, 8)
+  const normalized = segment.normalize('NFKD').replace(/[\u0300-\u036f]/g, '')
+  const extensionIndex = normalized.lastIndexOf('.')
+  const hasExtension = extensionIndex > 0 && extensionIndex < normalized.length - 1
+  const rawBase = hasExtension ? normalized.slice(0, extensionIndex) : normalized
+  const rawExtension = hasExtension ? normalized.slice(extensionIndex + 1) : ''
+  const base = rawBase
+    .toLowerCase()
+    .replace(/[^a-z0-9_-]+/g, '-')
+    .replace(/-+/g, '-')
+    .replace(/^-|-$/g, '') || 'file'
+  const extension = rawExtension.toLowerCase().replace(/[^a-z0-9]+/g, '')
+
+  return `${base}-${hash}${extension ? `.${extension}` : ''}`
+}
+
 export function storagePathFromCmsPath(filePath: string) {
   const normalizedPath = normalizeCmsPath(filePath)
+  let storagePath = normalizedPath
 
   if (normalizedPath.startsWith('public/uploads/')) {
-    return normalizedPath.replace(/^public\/uploads\/+/, '')
+    storagePath = normalizedPath.replace(/^public\/uploads\/+/, '')
+  } else if (normalizedPath.startsWith('uploads/')) {
+    storagePath = normalizedPath.replace(/^uploads\/+/, '')
   }
 
-  if (normalizedPath.startsWith('uploads/')) {
-    return normalizedPath.replace(/^uploads\/+/, '')
-  }
-
-  return normalizedPath
+  return storagePath.split('/').map(safeStorageSegment).join('/')
 }
 
 export function getSupabasePublicMediaUrl(filePath: string) {

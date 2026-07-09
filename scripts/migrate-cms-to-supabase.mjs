@@ -8,6 +8,7 @@ const bucket = process.env.SUPABASE_STORAGE_BUCKET || 'meraba-uploads'
 
 const contentFiles = [
   'src/content/site-settings.json',
+  'src/content/site.json',
   'src/content/header.json',
   'src/content/footer.json',
   'src/content/media.json',
@@ -39,8 +40,40 @@ function normalizePath(filePath) {
   return filePath.replace(/\\/g, '/').replace(/^\/+/, '')
 }
 
+function hashStorageSegment(segment) {
+  let hash = 2166136261
+
+  for (let index = 0; index < segment.length; index += 1) {
+    hash ^= segment.charCodeAt(index)
+    hash = Math.imul(hash, 16777619)
+  }
+
+  return (hash >>> 0).toString(36).slice(0, 8)
+}
+
+function safeStorageSegment(segment) {
+  const normalized = segment.normalize('NFKD').replace(/[\u0300-\u036f]/g, '')
+  const extensionIndex = normalized.lastIndexOf('.')
+  const hasExtension = extensionIndex > 0 && extensionIndex < normalized.length - 1
+  const rawBase = hasExtension ? normalized.slice(0, extensionIndex) : normalized
+  const rawExtension = hasExtension ? normalized.slice(extensionIndex + 1) : ''
+  const base = rawBase
+    .toLowerCase()
+    .replace(/[^a-z0-9_-]+/g, '-')
+    .replace(/-+/g, '-')
+    .replace(/^-|-$/g, '') || 'file'
+  const extension = rawExtension.toLowerCase().replace(/[^a-z0-9]+/g, '')
+  const hash = hashStorageSegment(segment)
+
+  return `${base}-${hash}${extension ? `.${extension}` : ''}`
+}
+
 function storagePathFromCmsPath(filePath) {
-  return normalizePath(filePath).replace(/^public\/uploads\/+/, '')
+  return normalizePath(filePath)
+    .replace(/^public\/uploads\/+/, '')
+    .split('/')
+    .map(safeStorageSegment)
+    .join('/')
 }
 
 function inferMimeType(filePath) {
@@ -79,7 +112,8 @@ async function requestJson(url, init = {}) {
     throw new Error(`${response.status} ${response.statusText}: ${text}`)
   }
 
-  return response.status === 204 ? null : response.json()
+  const text = await response.text()
+  return text ? JSON.parse(text) : null
 }
 
 async function upsertDocument(filePath) {
