@@ -7,7 +7,8 @@
     "cms": "decap-server",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "cms:migrate:supabase": "node scripts/migrate-cms-to-supabase.mjs"
   },
   "dependencies": {
     "next": "^16.2.6",
