@@ -1,11 +1,14 @@
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
-import { content } from '@/lib/content'
 import { buildEmailHref } from '@/lib/contactLinks'
+import { getSiteContent } from '@/lib/supabaseCms'
 
-export default function AccessibilityStatement() {
-  const accessibility = content.accessibilityPage
-  const accessibilityEmailHref = buildEmailHref(accessibility.contactEmail, content.global.defaultContactMessages)
+export const dynamic = 'force-dynamic'
+
+export default async function AccessibilityStatement() {
+  const siteContent = await getSiteContent()
+  const accessibility = siteContent.accessibilityPage
+  const accessibilityEmailHref = buildEmailHref(accessibility.contactEmail, siteContent.global.defaultContactMessages)
   const sections = [
     {
       id: 'accessibility-commitment',
@@ -31,7 +34,7 @@ export default function AccessibilityStatement() {
 
   return (
     <>
-      <Header />
+      <Header siteContent={siteContent} />
 
       <main id="main-content" className="w-full bg-[linear-gradient(180deg,#f8f6f1_0%,#eef3f7_100%)] py-12 md:py-16 lg:py-20">
         <div className="container-max">
@@ -85,7 +88,7 @@ export default function AccessibilityStatement() {
         </div>
       </main>
 
-      <Footer />
+      <Footer siteContent={siteContent} />
     </>
   )
 }

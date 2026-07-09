@@ -1,17 +1,18 @@
-'use client'
-
 import Link from 'next/link'
 import Image from 'next/image'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
-import { content } from '@/lib/content'
+import { getSiteContent } from '@/lib/supabaseCms'
 
-export default function About() {
-  const { statement } = content.aboutPage
+export const dynamic = 'force-dynamic'
+
+export default async function About() {
+  const siteContent = await getSiteContent()
+  const { statement } = siteContent.aboutPage
 
   return (
     <>
-      <Header />
+      <Header siteContent={siteContent} />
 
       <main id="main-content" className="relative overflow-hidden bg-[#f3f1ec] py-10 md:py-12 lg:py-14">
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_82%_8%,rgba(8,63,104,0.08),transparent_34%),linear-gradient(135deg,rgba(255,255,255,0.56),rgba(226,231,236,0.32))]" />
@@ -68,7 +69,7 @@ export default function About() {
         </div>
       </main>
 
-      <Footer />
+      <Footer siteContent={siteContent} />
     </>
   )
 }

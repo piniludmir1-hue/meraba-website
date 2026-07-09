@@ -1,14 +1,15 @@
-'use client'
-
 import Link from 'next/link'
 import Image from 'next/image'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
-import { content, getProductsPageCategories } from '@/lib/content'
+import { getProductsPageCategories } from '@/lib/fallbackContent'
+import { getSiteContent } from '@/lib/supabaseCms'
 import { getCategoryCardImageSources } from '@/lib/categoryImage'
 import { buildGmailComposeHref, buildWhatsAppHref } from '@/lib/contactLinks'
 
-function ProductVisual({ src, alt, dark = false }: { src?: string; alt?: string; dark?: boolean }) {
+export const dynamic = 'force-dynamic'
+
+function ProductVisual({ src, alt, dark = false, imagePlaceholderLabel }: { src?: string; alt?: string; dark?: boolean; imagePlaceholderLabel: string }) {
   const imageSources = src ? getCategoryCardImageSources(src) : undefined
 
   return (
@@ -35,7 +36,7 @@ function ProductVisual({ src, alt, dark = false }: { src?: string; alt?: string;
           />
           <div className={`absolute bottom-6 left-6 flex items-center gap-3 ${dark ? 'text-white/45' : 'text-[#6f7f8f]'}`}>
             <span className={`h-px w-11 ${dark ? 'bg-white/42' : 'bg-meraba/70'}`} />
-            <span className="text-[0.62rem] font-bold uppercase tracking-[0.16em]">{content.productsPage.productGrid.imagePlaceholderLabel}</span>
+            <span className="text-[0.62rem] font-bold uppercase tracking-[0.16em]">{imagePlaceholderLabel}</span>
           </div>
         </div>
       )}
@@ -46,15 +47,16 @@ function ProductVisual({ src, alt, dark = false }: { src?: string; alt?: string;
   )
 }
 
-export default function Products() {
-  const productTypes = getProductsPageCategories()
-  const { productsPage, global } = content
+export default async function Products() {
+  const siteContent = await getSiteContent()
+  const productTypes = getProductsPageCategories(siteContent)
+  const { productsPage, global } = siteContent
   const consultantEmailHref = buildGmailComposeHref(global.productConsultantEmail, global.defaultContactMessages)
   const consultantWhatsappHref = buildWhatsAppHref(global.whatsappNumber, global.defaultContactMessages)
 
   return (
     <>
-      <Header />
+      <Header siteContent={siteContent} />
 
       <main id="main-content">
       <section className="relative overflow-hidden border-b border-[#d5dce5] bg-[#07111f] text-white">
@@ -100,7 +102,7 @@ export default function Products() {
                 )}
                 <div className="relative p-3.5 pb-0">
                   <div className={`overflow-hidden rounded-[23px] border p-1 ${isCustom ? 'border-white/12 bg-white/[0.045]' : 'border-[#edf1f5] bg-[#f8fafc]'}`}>
-                    <ProductVisual src={productType.image} alt={productType.imageAlt} dark={isCustom} />
+                    <ProductVisual src={productType.image} alt={productType.imageAlt} dark={isCustom} imagePlaceholderLabel={productsPage.productGrid.imagePlaceholderLabel} />
                   </div>
                 </div>
                 <div className="relative flex flex-1 flex-col px-6 pb-5 pt-5 md:px-7 md:pb-6 md:pt-6">
@@ -239,7 +241,7 @@ export default function Products() {
       </section>
       </main>
 
-      <Footer />
+      <Footer siteContent={siteContent} />
     </>
   )
 }

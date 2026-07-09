@@ -4,21 +4,25 @@ import Header from '@/components/Header'
 import HeroSection from '@/components/HeroSection'
 import Footer from '@/components/Footer'
 import EditableMedia from '@/components/EditableMedia'
-import { content, getHomepageCategories } from '@/lib/content'
+import { getHomepageCategories } from '@/lib/fallbackContent'
+import { getSiteContent } from '@/lib/supabaseCms'
 import { buildWhatsAppHref } from '@/lib/contactLinks'
 
 function SectionLabel({ children }: { children: ReactNode }) {
   return <p className="section-label">{children}</p>
 }
 
-export default function Home() {
-  const homepageCategories = getHomepageCategories()
-  const { homepage, global, images } = content
+export const dynamic = 'force-dynamic'
+
+export default async function Home() {
+  const siteContent = await getSiteContent()
+  const homepageCategories = getHomepageCategories(siteContent)
+  const { homepage, global, images } = siteContent
   const consultantWhatsappHref = buildWhatsAppHref(global.whatsappNumber, global.defaultContactMessages)
 
   return (
     <>
-      <Header />
+      <Header siteContent={siteContent} />
 
       <main id="main-content">
         <HeroSection
@@ -192,7 +196,7 @@ export default function Home() {
       </section>
       </main>
 
-      <Footer />
+      <Footer siteContent={siteContent} />
     </>
   )
 }

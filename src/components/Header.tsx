@@ -3,10 +3,10 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { useEffect, useState } from 'react'
-import { content } from '@/lib/content'
+import { fallbackContent, type SiteContent } from '@/lib/fallbackContent'
 
-export default function Header() {
-  const navigation = content.header
+export default function Header({ siteContent = fallbackContent }: { siteContent?: SiteContent }) {
+  const navigation = siteContent.header
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
 
