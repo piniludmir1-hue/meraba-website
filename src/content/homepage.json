@@ -3,7 +3,7 @@
   "hero": {
     "brandStatement": "Global sourcing. Local supply. Operational certainty.",
     "headline": "Operational products\nfor airlines, catering\nand food-service systems.",
-    "mediaMode": "continuous",
+    "mediaMode": "separate",
     "continuousImage": {
       "src": "",
       "alt": "Continuous operational food-service product supply visual",
