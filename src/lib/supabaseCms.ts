@@ -8,9 +8,6 @@ import {
 
 export const cmsContentTag = 'cms-content'
 export const cmsStorageBucket = process.env.SUPABASE_STORAGE_BUCKET || 'meraba-uploads'
-const cmsCacheTtlMs = 1000 * 60
-
-let cachedContent: { value: SiteContent; expiresAt: number } | null = null
 
 type SupabaseDocumentRow = {
   path: string
@@ -201,19 +198,7 @@ async function loadSupabaseContent() {
 }
 
 export async function getSiteContent(): Promise<SiteContent> {
-  const now = Date.now()
-
-  if (cachedContent && cachedContent.expiresAt > now) {
-    return cachedContent.value
-  }
-
-  const value = await loadSupabaseContent()
-  cachedContent = {
-    value,
-    expiresAt: now + cmsCacheTtlMs,
-  }
-
-  return value
+  return loadSupabaseContent()
 }
 
 export async function upsertCmsDocument(filePath: string, data: unknown) {
@@ -343,5 +328,5 @@ export async function deleteCmsMedia(filePath: string) {
 }
 
 export function revalidateCmsContent() {
-  cachedContent = null
+  return undefined
 }
