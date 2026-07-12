@@ -33,6 +33,15 @@
     "title": "Thank you. Your request has been received.",
     "text": "Our team will review your inquiry and get back to you shortly."
   },
+  "autoresponder": {
+    "subject": "We received your request | MERABA",
+    "heading": "Thank you for contacting MERABA",
+    "introText": "Your request has been received successfully.\nOur team will review it and get back to you shortly.",
+    "tableIntroText": "Below is a copy of the information you submitted.",
+    "closingText": "Thank you for considering MERABA.",
+    "signatureCompanyName": "MERABA",
+    "brandTagline": "Global sourcing. Local supply. Operational certainty."
+  },
   "formFields": [
     {
       "name": "name",

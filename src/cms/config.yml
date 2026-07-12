@@ -594,6 +594,19 @@ collections:
             fields:
               - { label: "Success Message Title", name: "title", widget: "string" }
               - { label: "Success Message Text", name: "text", widget: "text" }
+          - label: "Contact Autoresponder Email"
+            name: "autoresponder"
+            widget: "object"
+            collapsed: true
+            hint: "Edit the automatic confirmation email sent to customers after they submit the Contact form. This does not change the public Contact page."
+            fields:
+              - { label: "Email Subject", name: "subject", widget: "string", hint: "Subject line of the confirmation email sent to the customer." }
+              - { label: "Main Heading", name: "heading", widget: "string", hint: "Main heading inside the confirmation email." }
+              - { label: "Intro Text", name: "introText", widget: "text", hint: "Short confirmation message near the top of the email." }
+              - { label: "Table Introduction Text", name: "tableIntroText", widget: "text", hint: "Short line before the submitted-details table." }
+              - { label: "Closing Text", name: "closingText", widget: "text", hint: "Closing sentence near the bottom of the email." }
+              - { label: "Signature Company Name", name: "signatureCompanyName", widget: "string", hint: "Company name shown in the email signature." }
+              - { label: "Brand Tagline", name: "brandTagline", widget: "string", hint: "Small brand line shown below the signature." }
           - label: "Contact Page Form Fields"
             name: "formFields"
             widget: "list"
