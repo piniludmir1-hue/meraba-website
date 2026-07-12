@@ -1,5 +1,8 @@
 import { NextResponse } from 'next/server'
 
+export const runtime = 'nodejs'
+export const dynamic = 'force-dynamic'
+
 type ContactRequest = {
   name?: string
   company?: string
@@ -12,8 +15,8 @@ type ContactRequest = {
   message?: string
 }
 
-const recipientEmail = process.env.CONTACT_EMAIL_TO || 'info@meraba.co'
-const senderEmail = process.env.CONTACT_EMAIL_FROM || 'MERABA Website <onboarding@resend.dev>'
+const defaultRecipientEmail = 'info@meraba.co'
+const defaultSubject = 'New MERABA product inquiry'
 
 const requiredFields: Array<{ key: keyof ContactRequest; label: string }> = [
   { key: 'company', label: 'Company' },
@@ -51,6 +54,19 @@ function escapeHtml(value: string) {
     .replace(/'/g, '&#39;')
 }
 
+function getEmailConfig() {
+  const apiKey = process.env.RESEND_API_KEY?.trim()
+  const recipientEmail = process.env.CONTACT_EMAIL_TO?.trim() || defaultRecipientEmail
+  const senderEmail = process.env.CONTACT_EMAIL_FROM?.trim()
+
+  return {
+    apiKey,
+    recipientEmail,
+    senderEmail,
+    configured: Boolean(apiKey && recipientEmail && senderEmail),
+  }
+}
+
 export async function POST(request: Request) {
   let body: ContactRequest
 
@@ -75,9 +91,17 @@ export async function POST(request: Request) {
     return NextResponse.json({ message: 'A valid email address is required.' }, { status: 400 })
   }
 
-  if (!process.env.RESEND_API_KEY) {
+  const emailConfig = getEmailConfig()
+
+  if (!emailConfig.configured) {
+    console.error('Contact form email delivery is not configured.', {
+      hasResendApiKey: Boolean(emailConfig.apiKey),
+      hasContactEmailTo: Boolean(emailConfig.recipientEmail),
+      hasContactEmailFrom: Boolean(emailConfig.senderEmail),
+    })
+
     return NextResponse.json(
-      { message: 'Email delivery is not configured. Set RESEND_API_KEY to enable contact form delivery.' },
+      { message: 'Email delivery is not configured.' },
       { status: 503 },
     )
   }
@@ -96,20 +120,29 @@ export async function POST(request: Request) {
   const response = await fetch('https://api.resend.com/emails', {
     method: 'POST',
     headers: {
-      Authorization: `Bearer ${process.env.RESEND_API_KEY}`,
+      Authorization: `Bearer ${emailConfig.apiKey}`,
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
-      from: senderEmail,
-      to: recipientEmail,
+      from: emailConfig.senderEmail,
+      to: emailConfig.recipientEmail,
       reply_to: inquiry.email,
-      subject: 'New MERABA product inquiry',
+      subject: defaultSubject,
       text,
       html: `<table style="border-collapse:collapse;font-family:Arial,sans-serif;font-size:14px;color:#111827;">${htmlRows}</table>`,
     }),
   })
 
   if (!response.ok) {
+    const errorText = await response.text().catch(() => '')
+    console.error('Resend contact email delivery failed.', {
+      status: response.status,
+      statusText: response.statusText,
+      recipientEmail: emailConfig.recipientEmail,
+      senderEmail: emailConfig.senderEmail,
+      response: errorText,
+    })
+
     return NextResponse.json({ message: 'Email delivery failed.' }, { status: 502 })
   }
 
