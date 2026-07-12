@@ -156,7 +156,7 @@ function buildConfirmationEmailHtml({
         .table-cell { padding: 8px 22px 22px 22px !important; }
         .detail-label { width: 48% !important; padding: 9px 10px !important; font-size: 12px !important; line-height: 1.35 !important; }
         .detail-value { padding: 9px 10px !important; font-size: 12px !important; line-height: 1.45 !important; }
-        .signature-cell { padding: 0 22px 28px 22px !important; }
+        .brand-cell { padding: 0 22px 28px 22px !important; }
         .brand-mark { width: 28px !important; max-width: 28px !important; }
         .brand-tagline { font-size: 9px !important; letter-spacing: 0.07em !important; line-height: 1.45 !important; }
       }
@@ -192,9 +192,17 @@ function buildConfirmationEmailHtml({
               </td>
             </tr>
             <tr>
-              <td class="signature-cell" style="padding:0 34px 38px 34px;text-align:center;">
-                <img class="brand-mark" src="${escapeAttribute(brandMarkUrl)}" width="34" alt="MERABA" style="display:block;width:34px;max-width:34px;height:auto;margin:0 auto;border:0;outline:none;text-decoration:none;" />
-                <p class="brand-tagline" style="margin:12px 0 0 0;color:#083f68;font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;">${escapeHtml(autoresponder.brandTagline)}</p>
+              <td class="brand-cell" style="padding:0 34px 38px 34px;text-align:center;">
+                <table role="presentation" align="center" cellspacing="0" cellpadding="0" style="border-collapse:collapse;margin:0 auto;text-align:center;">
+                  <tr>
+                    <td align="center" style="padding:0;text-align:center;">
+                      <img class="brand-mark" src="${escapeAttribute(brandMarkUrl)}" width="34" alt="MERABA" style="display:block;width:34px;max-width:34px;height:auto;margin:0 auto;border:0;outline:none;text-decoration:none;" />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="brand-tagline" align="center" style="padding:12px 0 0 0;color:#083f68;font-size:11px;font-weight:700;letter-spacing:0.12em;line-height:1.4;text-transform:uppercase;text-align:center;">${escapeHtml(autoresponder.brandTagline)}</td>
+                  </tr>
+                </table>
               </td>
             </tr>
           </table>
